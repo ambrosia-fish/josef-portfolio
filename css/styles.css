@@ -65,7 +65,7 @@ ul {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
 }
 
@@ -78,7 +78,7 @@ ul {
 }
 
 .grid_item:last-child {
-  grid-column: 3 / 3;
+  grid-column: 4 / 4;
   grid-row: 1 / 3;
 }
 
