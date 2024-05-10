@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Josef Ameur - Contact</title>
+        <link rel="shortcut icon" href="img/josef-favicon.png">
+        <link rel="stylesheet" href="css\styles.production.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="page-header">
+            <img src="img/name-logo.png" class="page-header_item logo" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
+            <nav class="page-header_item">
+                <ul role="menubar" class="navigation-list">
+                    <li role="presentation">
+                        <a href="index.html" role="menuitem" class="navigation-list_item">Home</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="about.html" role="menuitem" class="navigation-list_item">About Me</a>
+                    </li>
+                    <li role="presentation">   
+                        <a href="work.html" role="menuitem" class="navigation-list_item">Work</a>
+                    </li>
+                    <li role="presentation">   
+                        <a href="contact.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="contact">
+                <h1>My Contact Details:</h1>
+                <p class="p-center">
+                    Telephone: <a href="tel:+1 508 688 4205" aria-label="five zero eight six eight eight four two zero five">(508) 688 4205</a><br>
+                    Email: <a href="mailto:josefameur@gmail.com">josefameur (at) gmail (dot) com</a><br>
+                </p>
+                <h2>Shoot me a message:</h2>
+                <form action="" method="post" id="contact-form">
+                    <label class="standard-label" for="contact-email">Your E-mail:<br></label>
+                    <input type="email" id="contact-email" required>*<br>
+
+                    <label class="standard-label" for="contact-phone">Your Phone:<br></label>
+                    <input type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" id="contact-phone" required>*<br>
+
+                    <label class="standard-label" for="message-text">Your Message:<br></label>
+                    <textarea maxlength="420" id="message-text" required></textarea>*<br><br>
+
+                    <input type="submit" value="Send Message" class="button">
+                </form>
+            </section>
+        </main>
+        <footer class="page_footer">
+            <h2> Find me on:</h2>
+            <div class="social-media">
+                <!--add social links-->
+                <img src="img/github-icon.svg" alt="Github Link">
+                <img src="img/twitter-icon.svg" alt="Twitter Link">
+                <img src="img/linkedin-icon.svg" alt="LinkedIn Link">
+            </div>
+        </footer> 
+        <script src="js/tota11y.min.js"></script>
+    </body>
+</html>
