@@ -224,3 +224,62 @@ button:active,
     column-count: 1;
   }
 }
+
+.skills-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.skills-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.skill-bubble {
+  background-color: var(--mid-color-primary);
+  color: var(--light-color-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin: 5px;
+  /* transition: all 0.3s ease;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.5s); */
+}
+
+.skill-bubble:hover {
+  transform: scale(1.1);
+  background-color: var(--active-button);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive adjustments */
+@media all and (max-width: 750px) {
+  .skills-bubbles {
+    gap: 8px;
+  }
+  
+  .skill-bubble {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .skill-bubble {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}
