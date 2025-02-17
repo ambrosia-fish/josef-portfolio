@@ -1,285 +1,42 @@
 :root {
-  --dark-color-primary: #0b1424;
-  --mid-color-primary: #25375c;
-  --light-color-primary: #d7e0ea;
-  --active-button: #af7479;
-  --visited-link: #b89db8;
-  --font-primary: "Pixelify Sans", sans-serif;
-  --font-secondary: "Silkscreen", sans-serif;
+    --dark-color-primary: #0b1424;
+    --mid-color-primary: #25375c;
+    --light-color-primary: #d7e0ea;
+    --active-button: #af7479;
+    --visited-link: #b89db8;
+    --font-primary: "Pixelify Sans", sans-serif;
+    --font-secondary: "Silkscreen", sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: var(--dark-color-primary);
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-primary);
-  color: var(--light-color-primary);
+    background-color: var(--dark-color-primary);
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    color: var(--light-color-primary);
 }
 
-.logo {
-  height: 50px;
-  width: 200px;
+/* Add new styles for section transitions */
+.section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.page-header {
-  display: flex;
-  width: 100%;
-  padding: 20px;
+.section.active {
+    display: block;
+    opacity: 1;
 }
 
-.page-header_item:last-child {
-  flex-grow: 1;
-  text-align: right;
-}
+/* Rest of your existing CSS */
+/* ... */
 
-.navigation-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navigation-list li {
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.navigation-list__item--active {
-  text-decoration: none;
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Centered content for About and Contact pages */
-.about-page main,
-.contact-page main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.about-page .profile,
-.contact-page .contact {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Grid layout for Work page */
-.grid {
-  column-count: 3;
-  column-gap: 20px;
-  padding: 20px;
-}
-
-.grid_item {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 20px;
-  break-inside: avoid;
-  background-color: var(--mid-color-primary);
-  border: 2px solid var(--light-color-primary);
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.grid_item h2 {
-  margin-top: 0;
-  font-size: 1.5em;
-}
-
-.grid_item p {
-  margin-bottom: 15px;
-}
-
-.grid_item img,
-.grid_item video {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-.profile {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.profile_portrait {
-  float: none;
-  width: 250px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  display: block;
-}
-
-h1 {
-  font-size: 30px;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 700;
-}
-
-p {
-  line-height: 1.6;
-}
-
-a {
-  color: var(--light-color-primary);
-  text-decoration: none;
-}
-
-a:visited {
-  color: var(--visited-link);
-}
-
-a:hover,
-a:focus {
-  color: var(--active-button);
-  text-decoration: none;
-}
-
-a:active {
-  color: var(--light-color-primary);
-}
-
-button,
-.button {
-  font-family: var(--font-primary);
-  background-color: var(--mid-color-primary);
-  color: var(--light-color-primary);
-  border: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 3px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition: opacity 0.2s;
-}
-
-button:hover,
-button:focus,
-.button:hover,
-.button:focus {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-button:active,
-.button:active {
-  background-color: var(--active-button);
-  color: var(--dark-color-primary);
-}
-
-.page_footer {
-  clear: both;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-media img {
-  width: 30px;
-  height: 30px;
-}
-
-@media all and (max-width: 750px) {
-  .grid {
-    column-count: 2;
-  }
-
-  h1 {
-    font-size: 22px;
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .page-header_item:last-child {
-    margin-top: 10px;
-    text-align: center;
-  }
-}
-
-@media all and (max-width: 500px) {
-  .grid {
-    column-count: 1;
-  }
-}
-
-.skills-container {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.skills-bubbles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.skill-bubble {
-  background-color: var(--mid-color-primary);
-  color: var(--light-color-primary);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  display: inline-block;
-  margin: 5px;
-  /* transition: all 0.3s ease;
-  animation: float 5s ease-in-out infinite;
-  animation-delay: calc(var(--i) * 0.5s); */
-}
-
-.skill-bubble:hover {
-  transform: scale(1.1);
-  background-color: var(--active-button);
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Responsive adjustments */
-@media all and (max-width: 750px) {
-  .skills-bubbles {
-    gap: 8px;
-  }
-  
-  .skill-bubble {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-}
-
-@media all and (max-width: 500px) {
-  .skill-bubble {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
+/* Add any additional styles needed for the single-page layout */
+#content {
+    min-height: calc(100vh - 200px); /* Adjust based on your footer height */
+    padding: 20px;
 }

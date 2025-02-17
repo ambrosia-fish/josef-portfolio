@@ -1,50 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Josef Ameur - Home</title>
+        <title>Josef Ameur - Portfolio</title>
         <link rel="shortcut icon" href="img/josef-favicon.png">
         <link rel="stylesheet" href="css/styles.production.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    </head>
     <body>
         <header class="page-header">
             <img src="img/name-logo.png" class="page-header_item logo" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
             <nav class="page-header_item">
                 <ul role="menubar" class="navigation-list">
                     <li role="presentation">
-                        <a href="index.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Home</a>
+                        <a href="#home" role="menuitem" class="navigation-list_item" data-section="home">Home</a>
                     </li>
                     <li role="presentation">
-                        <a href="about.html" role="menuitem" class="navigation-list_item">About Me</a>
+                        <a href="#about" role="menuitem" class="navigation-list_item" data-section="about">About Me</a>
                     </li>
                     <li role="presentation">   
-                        <a href="work.html" role="menuitem" class="navigation-list_item">Work</a>
+                        <a href="#work" role="menuitem" class="navigation-list_item" data-section="work">Work</a>
                     </li>
                     <li role="presentation">   
-                        <a href="contact.html" role="menuitem" class="navigation-list_item">Contact</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="case-study.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Case Study</a>
+                        <a href="#contact" role="menuitem" class="navigation-list_item" data-section="contact">Contact</a>
                     </li>
                 </ul>
             </nav>
         </header>
-        <main class="profile">
-            <!--add photo of Josef-->
-            <img src="img/josef-headshot.jpg" class="profile_portrait" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day.">
-            <h1>Hello World!</h1>
-            <p class="intro">
-                My name is Josef Ameur and I'm a <span>web</span> developer from Rhode Island.
-            </p>
-            <a href="work.html">Check out some of my projects!</a>
-        </main>
+
+        <div id="content">
+            <!-- Home Section -->
+            <section id="home" class="section active profile">
+                <img src="img/josef-headshot.jpg" class="profile_portrait" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day.">
+                <h1>Hello World!</h1>
+                <p class="intro">
+                    My name is Josef Ameur and I'm a <span>web</span> developer from Rhode Island.
+                </p>
+                <a href="#work" data-section="work">Check out some of my projects!</a>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h1>Welcome!</h1>
+                <p>
+                    Welcome to my corner of the internet. I'm Josef Ameur, a Full Stack Developer and Project Manager based in Providence, RI and the Boston-Metro area. I'm hoping to find a position within the full stack world in which I can bring showcase my unique blend of creative and technical skills!
+                </p>
+                <div class="skills-container">
+                    <h2>Skills</h2>
+                    <div class="skills-bubbles">
+                        <span class="skill-bubble">JavaScript</span>
+                        <span class="skill-bubble">TypeScript</span>
+                        <span class="skill-bubble">Python</span>
+                        <span class="skill-bubble">React</span>
+                        <span class="skill-bubble">Node.js</span>
+                        <span class="skill-bubble">Express</span>
+                        <span class="skill-bubble">MongoDB</span>
+                        <!-- Add other skills as needed -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Section -->
+            <section id="work" class="section">
+                <h1>Work</h1>
+                <div class="grid">
+                    <!-- Grid items from work.html -->
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact">
+                <h1>Contact Me</h1>
+                <p>
+                    Email: <a href="mailto:josefameur@gmail.com">josefameur (at) gmail (dot) com</a>
+                </p>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="button">Send Message</button>
+                </form>
+            </section>
+        </div>
+
         <footer class="page_footer">
             <h2>Find me on:</h2>
             <div class="social-media">
-                <!--add social links-->
                 <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer">
                     <img src="img/github-icon.svg" alt="Github Link">
                 </a>
@@ -57,8 +106,9 @@
                 <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer">
                     <img src="img/linkedin-icon.svg" alt="LinkedIn Link">
                 </a>
-                
             </div>
-        </footer> 
+        </footer>
+
+        <script src="js/spa.js"></script>
     </body>
 </html>
