@@ -1,64 +1,433 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Josef Ameur - Home</title>
-        <link rel="shortcut icon" href="img/josef-favicon.png">
-        <link rel="stylesheet" href="css/styles.production.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
-    <body>
-        <header class="page-header">
-            <img src="img/name-logo.png" class="page-header_item logo" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
-            <nav class="page-header_item">
-                <ul role="menubar" class="navigation-list">
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josef Ameur - Home</title>
+    <link rel="shortcut icon" href="img/josef-favicon.png">
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0b1424',       // --dark-color-primary
+                        mid: '#25375c',        // --mid-color-primary
+                        light: '#d7e0ea',      // --light-color-primary
+                        button: '#af7479',     // --active-button
+                        link: '#b89db8'        // --visited-link
+                    },
+                    fontFamily: {
+                        primary: ['"Pixelify Sans"', 'sans-serif'],
+                        secondary: ['Silkscreen', 'sans-serif'],
+                        pixel: ['DotGothic16', 'sans-serif']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom styles -->
+    <style>
+        body {
+            font-family: 'Pixelify Sans', sans-serif;
+            color: #d7e0ea;
+            background-color: #0b1424;
+        }
+        
+        .section {
+            min-height: 70vh;
+            padding: 3rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section {
+                min-height: 100vh;
+                padding: 4rem 0;
+            }
+        }
+        
+        /* Compact section for contact */
+        .section-compact {
+            min-height: auto;
+            padding: 1.5rem 0;
+        }
+        
+        /* Scroll animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Project card hover effects */
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Skill bubble styles */
+        .skill-bubble {
+            transition: all 0.2s ease;
+            background-color: #25375c;
+            color: #d7e0ea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .skill-bubble:hover {
+            transform: scale(1.1);
+            background-color: #af7479;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header x-data="{ mobileMenuOpen: false }" class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="img/name-logo.png" class="h-12 w-auto" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex">
+                <ul role="menubar" class="flex space-x-10">
                     <li role="presentation">
-                        <a href="index.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Home</a>
+                        <a href="#home" role="menuitem" class="text-light hover:text-button">Home</a>
                     </li>
                     <li role="presentation">
-                        <a href="about.html" role="menuitem" class="navigation-list_item">About Me</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="work.html" role="menuitem" class="navigation-list_item">Work</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="contact.html" role="menuitem" class="navigation-list_item">Contact</a>
+                        <a href="#projects" role="menuitem" class="text-light hover:text-button">Projects</a>
                     </li>
                     <li role="presentation">
-                        <a href="case-study.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Case Study</a>
+                        <a href="about.html" role="menuitem" class="text-light hover:text-button">About Me</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="contact.html" role="menuitem" class="text-light hover:text-button">Contact</a>
                     </li>
                 </ul>
-            </nav>
-        </header>
-        <main class="profile">
-            <!--add photo of Josef-->
-            <img src="img/josef-headshot.jpg" class="profile_portrait" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day.">
-            <h1>Hello World!</h1>
-            <p class="intro">
-                My name is Josef Ameur and I'm a <span>web</span> developer from Rhode Island.
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-light focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="md:hidden bg-mid">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+                <a href="#home" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Home</a>
+                <a href="#projects" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Projects</a>
+                <a href="about.html" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">About Me</a>
+                <a href="contact.html" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="section pt-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6 font-secondary">Hello World!</h1>
+                    <p class="text-lg mb-4 font-primary">
+                        My name is Josef Ameur and I'm a <span class="font-bold">full stack developer</span> from Rhode Island.
+                    </p>
+                    
+                    <!-- Status indicator -->
+                    <div class="inline-block bg-mid border border-light px-3 py-1 rounded-full text-sm font-medium mb-8">
+                        <span class="flex items-center">
+                            <svg class="h-3 w-3 mr-2 animate-pulse" fill="#af7479" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                            </svg>
+                            Currently seeking new opportunities
+                        </span>
+                    </div>
+                    
+                    <div class="flex space-x-6 mb-8">
+                        <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
+                        </a>
+                        <a href="https://x.com/Ambrosia_Fish" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/twitter-icon.svg" alt="Twitter Link" class="w-6 h-6">
+                        </a>
+                        <a href="https://medium.com/@Brosefish" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/medium-icon.svg" alt="Medium Link" class="w-6 h-6">
+                        </a>
+                        <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
+                        </a>
+                    </div>
+                    
+                    <a href="#projects" class="bg-mid text-light px-6 py-3 rounded-lg font-medium hover:bg-button transition duration-200 inline-block">View My Projects</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center items-center">
+                    <div class="w-full flex justify-center py-8 md:py-12">
+                        <img src="img/josef-headshot.jpg" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day." class="w-4/5 max-w-sm mx-auto rounded-full border-4 border-mid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-light mb-12 text-center font-secondary">My Work</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sci-Flix Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">Sci-Flix</h3>
+                        <p class="text-light mb-4">
+                            A web application and API focused on sci-fi films. Users can browse, search, and interact with a collection of sci-fi movies.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">Angular</span>
+                            <span class="skill-bubble">React</span>
+                            <span class="skill-bubble">MongoDB</span>
+                            <span class="skill-bubble">Node.js</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://sci-flix.netlify.app/" target="_blank" class="text-light hover:text-button font-medium text-sm">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/sci-flix-client" target="_blank" class="text-light hover:text-button font-medium text-sm">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Meet App Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/meet-app-screenshot.png" alt="Meet App Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">Meet App</h3>
+                        <p class="text-light mb-4">
+                            A responsive React application designed to help users discover and manage local events with features like city-based filtering and offline functionality.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">React</span>
+                            <span class="skill-bubble">PWA</span>
+                            <span class="skill-bubble">Data Viz</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://ambrosia-fish.github.io/meet-app/" target="_blank" class="text-light hover:text-button font-medium text-sm">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/meet-app" target="_blank" class="text-light hover:text-button font-medium text-sm">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pokedex App Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/bulbasaur.png" alt="Pokedex App Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">Pokedex App</h3>
+                        <p class="text-light mb-4">
+                            A simple Pokedex application that pulls data from PokeAPI to create a list of the first 150 pokemon with detailed stats.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">JavaScript</span>
+                            <span class="skill-bubble">Fetch API</span>
+                            <span class="skill-bubble">Polyfill</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://ambrosia-fish.github.io/dex-app/" target="_blank" class="text-light hover:text-button font-medium text-sm">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/dex-app" target="_blank" class="text-light hover:text-button font-medium text-sm">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legacy Video Work -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <div class="w-full h-48 relative">
+                        <iframe src="https://player.vimeo.com/video/917228888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" class="absolute top-0 left-0 w-full h-full" title="Joe Aziz - Reel"></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">Legacy Video Work</h3>
+                        <p class="text-light mb-4">
+                            Previous work as a videographer handling all aspects of production including camera operation, editing, sound, and more.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">Videography</span>
+                            <span class="skill-bubble">Editing</span>
+                            <span class="skill-bubble">Production</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://vimeo.com/917228888?share=copy" target="_blank" class="text-light hover:text-button font-medium text-sm">View Reel</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mothaga Game -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <div class="w-full h-48 bg-dark flex items-center justify-center">
+                        <h3 class="text-light text-2xl font-bold font-secondary">Mothaga</h3>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">Mothaga</h3>
+                        <p class="text-light mb-4">
+                            An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">Godot</span>
+                            <span class="skill-bubble">GDScript</span>
+                            <span class="skill-bubble">Game Dev</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <p class="text-button font-medium text-sm">Coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Website -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-light mb-2 font-secondary">This Portfolio</h3>
+                        <p class="text-light mb-4">
+                            My personal portfolio site built to showcase my projects and skills.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-bubble">HTML</span>
+                            <span class="skill-bubble">CSS</span>
+                            <span class="skill-bubble">Tailwind</span>
+                            <span class="skill-bubble">Alpine.js</span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="text-light hover:text-button font-medium text-sm">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-mid text-light">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 font-secondary">Let's Work Together</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                I'm currently seeking new opportunities in full stack development. Feel free to reach out to discuss how my skills and experience can benefit your team.
             </p>
-            <a href="work.html">Check out some of my projects!</a>
-        </main>
-        <footer class="page_footer">
-            <h2>Find me on:</h2>
-            <div class="social-media">
-                <!--add social links-->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="about.html" class="bg-dark text-light px-6 py-3 rounded-lg font-medium hover:bg-button transition duration-200">Learn More About Me</a>
+                <a href="contact.html" class="bg-transparent border-2 border-light text-light px-6 py-3 rounded-lg font-medium hover:bg-dark transition duration-200">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-6">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center mb-4">Find me on:</h2>
+            <div class="flex justify-center gap-5 mb-4">
                 <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer">
-                    <img src="img/github-icon.svg" alt="Github Link">
+                    <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                 </a>
                 <a href="https://x.com/Ambrosia_Fish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/twitter-icon.svg" alt="Twitter Link">
+                    <img src="img/twitter-icon.svg" alt="Twitter Link" class="w-6 h-6">
                 </a>
                 <a href="https://medium.com/@Brosefish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/medium-icon.svg" alt="Medium Link">
+                    <img src="img/medium-icon.svg" alt="Medium Link" class="w-6 h-6">
                 </a>
                 <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer">
-                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link">
+                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                 </a>
-                
             </div>
-        </footer> 
-    </body>
+            <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll animation script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Scroll animation
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            
+            const elementInView = (el, scrollOffset = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            // Initialize
+            handleScrollAnimation();
+            
+            // Add scroll event
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+        });
+    </script>
+</body>
 </html>
