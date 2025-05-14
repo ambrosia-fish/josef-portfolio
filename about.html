@@ -38,6 +38,14 @@
     
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Additional inline styles for mobile menu -->
+    <style>
+        /* Hide mobile menu by default for faster loading */
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -79,7 +87,7 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
+        <div x-cloak x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
                 <a href="index.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">HOME</a>
                 <a href="index.html#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">PROJECTS</a>
@@ -129,7 +137,7 @@
                             
                             <div class="timeline-item">
                                 <div class="timeline-content">
-                                    <h3 class="text-xl font-bold text-light mb-2 font-secondary">Project Manager - Tech Industry</h3>
+                                   <h3 class="text-xl font-bold text-light mb-2 font-secondary">Project Manager - Tech Industry</h3>
                                     <p class="text-light mb-1">Austin, TX</p>
                                     <p class="text-light">After a move to Austin, TX, I landed as a project manager in the tech industry where I contracted for Apple for the TV App backend data, managing complex digital projects and coordinating cross-functional teams.</p>
                                 </div>
@@ -180,7 +188,7 @@
                         
                         <div class="bg-mid rounded-lg p-6 border-2 border-light">
                             <h3 class="text-xl font-bold text-light mb-4 font-secondary">Backend</h3>
-                            <div class="flex flex-wrap gap-2">
+                             <div class="flex flex-wrap gap-2">
                                 <span class="skill-bubble">Node.js</span>
                                 <span class="skill-bubble">Express</span>
                                 <span class="skill-bubble">Python</span>
