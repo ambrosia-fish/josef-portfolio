@@ -136,15 +136,46 @@ header .nav-links a {
   padding: 0 10px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .section {
-    min-height: auto; /* Let content determine height */
-    padding: 2rem 0; /* Reduced from 4rem */
+/* Mobile Hero Section Structure - Reversed */
+@media (max-width: 767px) {
+  #home .flex.flex-col.md\:flex-row {
+    flex-direction: column-reverse !important;
   }
   
-  #projects {
-    margin-top: -1rem;
+  #home img.rounded-full {
+    margin: 0 auto 2rem auto;
+    max-width: 65% !important;
+  }
+  
+  #home h1, #home p, #home .flex.space-x-6, #home a.btn-primary {
+    text-align: center;
+  }
+  
+  #home .flex.space-x-6 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #home a.btn-primary {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+  }
+}
+
+/* Responsive adjustments - trigger mobile view earlier */
+@media (max-width: 900px) {
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  .md\:flex {
+    display: none !important;
   }
   
   h1 {
@@ -183,12 +214,6 @@ header .nav-links a {
   /* Hero section adjustments for mobile */
   #home .container > div {
     gap: 1rem;
-  }
-  
-  /* Adjust headshot size for mobile */
-  #home img {
-    max-width: 200px;
-    margin: 1rem auto;
   }
   
   /* Project cards for mobile */
