@@ -2,8 +2,13 @@
 #mobile-menu {
   /* Must be initially hidden */
   display: none;
-  background-color: #0b1424;
+  background-color: #25375c !important; /* Force the mid color */
   z-index: 40;
+}
+
+/* Force consistent background color on all pages */
+#mobile-menu div {
+  background-color: #25375c !important;
 }
 
 /* Reset any Alpine.js related styles */
@@ -14,17 +19,38 @@
 }
 
 /* Ensure mobile menu toggle works correctly */
-#mobile-menu.active {
+#mobile-menu.active,
+#mobile-menu.menu-show {
   display: block !important;
 }
 
 /* Force correct display of hamburger/close icons */
 #hamburger-icon.hidden,
-#close-icon.hidden {
+#close-icon.hidden,
+#hamburger-icon.icon-hide,
+#close-icon.icon-hide {
   display: none !important;
 }
 
 #hamburger-icon:not(.hidden),
-#close-icon:not(.hidden) {
+#close-icon:not(.hidden),
+#hamburger-icon.icon-show,
+#close-icon.icon-show {
   display: block !important;
+}
+
+/* Make mobile menu links consistent across all pages */
+#mobile-menu a.mobile-link {
+  display: block !important;
+  padding: 0.5rem 0.75rem !important;
+  margin: 0.25rem 0 !important;
+  color: #d7e0ea !important; /* --light-color-primary */
+  border-radius: 0.375rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Fix hover effects to be consistent */
+#mobile-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #d7e0ea !important; /* --light-color-primary */
 }
