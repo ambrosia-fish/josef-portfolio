@@ -39,7 +39,7 @@
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Mobile menu fix CSS - Added to override any conflicting styles -->
+    <!-- Mobile menu fix CSS - crucial for consistent appearance -->
     <link rel="stylesheet" href="css/mobile-menu-fix.css">
     
     <!-- Additional inline styles to force consistency -->
@@ -47,11 +47,13 @@
         /* BRUTALLY FORCE MENU HIDDEN - This is the only safe approach at this point */
         #mobile-menu {
             display: none !important;
+            background-color: #25375c !important;
         }
         
         /* Create a class that will be used by JS to show the menu when needed */
         #mobile-menu.menu-show {
             display: block !important;
+            background-color: #25375c !important;
         }
         
         /* Controls icon visibility */
@@ -104,7 +106,7 @@
         </nav>
         
         <!-- Mobile Menu - Match the structure and classes from index.html -->
-        <div id="mobile-menu" class="md:hidden">
+        <div id="mobile-menu" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
                 <a href="index.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
                 <a href="index.html#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
