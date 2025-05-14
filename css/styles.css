@@ -92,6 +92,34 @@ button, .button, .skill-bubble, .nav-item, a {
   margin-bottom: 1.5rem; /* Reduced from 2rem or more */
 }
 
+/* Header alignment fix */
+header nav {
+  height: 70px; /* Fixed height for header */
+}
+
+header .nav-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+header .nav-logo span, 
+header .nav-logo img {
+  max-height: 50px; /* Consistent height for logo elements */
+}
+
+header .nav-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header .nav-links ul {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .section {
