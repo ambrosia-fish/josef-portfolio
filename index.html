@@ -53,6 +53,11 @@
             font-family: "Silkscreen", sans-serif !important;
             font-weight: 700 !important;
         }
+        
+        /* Hide mobile menu by default for faster loading */
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="font-body">
@@ -95,7 +100,7 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
+        <div x-cloak x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
                 <a href="#home" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">HOME</a>
                 <a href="#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">PROJECTS</a>
