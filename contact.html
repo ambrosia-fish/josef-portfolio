@@ -95,107 +95,78 @@
                 <h1 class="text-4xl font-bold text-light mb-6 text-center font-primary">CONTACT ME</h1>
                 
                 <div class="bg-mid rounded-lg shadow-md p-8 mb-10 border-2 border-light">
-                    <!-- Web3Forms contact form with inline script for submission -->
-                    <div x-data="{ 
-                        isSubmitting: false,
-                        submitSuccess: false,
-                        submitError: false,
-                        errorMessage: ''
-                    }">
-                        <h2 class="text-2xl font-bold text-light mb-4 font-primary">SEND ME A MESSAGE</h2>
-                        
-                        <!-- Success message -->
-                        <div x-show="submitSuccess" class="bg-green-800 border border-green-600 text-light px-4 py-3 rounded mb-4">
-                            <p>Thank you for your message! I'll get back to you soon.</p>
-                        </div>
-                        
-                        <!-- Error message -->
-                        <div x-show="submitError" class="bg-red-800 border border-red-600 text-light px-4 py-3 rounded mb-4">
-                            <p x-text="errorMessage || 'There was an error sending your message. Please try again.'"></p>
-                        </div>
-                        
-                        <form id="contactForm" @submit.prevent="
-                            isSubmitting = true;
-                            fetch('https://api.web3forms.com/submit', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    access_key: '4754fa88-b05e-4e97-b0ac-88d33a20382a',
-                                    subject: 'New Contact Form Submission - Portfolio',
-                                    from_name: 'Josef\\'s Portfolio Contact Form',
-                                    name: document.getElementById('name').value,
-                                    email: document.getElementById('email').value,
-                                    message: document.getElementById('message').value
-                                })
-                            })
-                            .then(async (response) => {
-                                let result = await response.json();
-                                isSubmitting = false;
-                                if (response.status == 200) {
-                                    submitSuccess = true;
-                                    document.getElementById('contactForm').reset();
-                                } else {
-                                    submitError = true;
-                                    errorMessage = result.message || 'Something went wrong!';
-                                }
-                            })
-                            .catch(error => {
-                                isSubmitting = false;
-                                submitError = true;
-                                errorMessage = 'There was a network error. Please try again.';
-                            })
-                        " class="space-y-4">
-                            <!-- Honeypot field to prevent spam -->
-                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                            
-                            <div>
-                                <label for="name" class="block text-light text-sm font-bold mb-2">Name</label>
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    name="name" 
-                                    class="w-full"
-                                    required
-                                >
-                            </div>
-                            
-                            <div>
-                                <label for="email" class="block text-light text-sm font-bold mb-2">Email</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    class="w-full"
-                                    required
-                                >
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-light text-sm font-bold mb-2">Message</label>
-                                <textarea 
-                                    id="message" 
-                                    name="message" 
-                                    rows="5" 
-                                    class="w-full resize-none"
-                                    required
-                                ></textarea>
-                            </div>
-                            
-                            <div class="flex justify-center">
-                                <button 
-                                    type="submit" 
-                                    class="bg-mid text-light border-2 border-light px-8 py-3 rounded-md font-medium hover:bg-button transition duration-200"
-                                    x-bind:disabled="isSubmitting"
-                                >
-                                    <span x-show="!isSubmitting">Send Message</span>
-                                    <span x-show="isSubmitting">Sending...</span>
-                                </button>
-                            </div>
-                        </form>
+                    <h2 class="text-2xl font-bold text-light mb-4 font-primary">SEND ME A MESSAGE</h2>
+                    
+                    <!-- Success message -->
+                    <div id="success-message" class="bg-green-800 border border-green-600 text-light px-4 py-3 rounded mb-4 hidden">
+                        <p>Thank you for your message! I'll get back to you soon.</p>
                     </div>
+                    
+                    <!-- Error message -->
+                    <div id="error-message" class="bg-red-800 border border-red-600 text-light px-4 py-3 rounded mb-4 hidden">
+                        <p id="error-text">There was an error sending your message. Please try again.</p>
+                    </div>
+                    
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="4754fa88-b05e-4e97-b0ac-88d33a20382a">
+                        
+                        <!-- Optional: Subject -->
+                        <input type="hidden" name="subject" value="New Contact Form Submission - Portfolio">
+                        
+                        <!-- Optional: From Name -->
+                        <input type="hidden" name="from_name" value="Josef's Portfolio Contact Form">
+                        
+                        <!-- Optional: Redirect URL -->
+                        <input type="hidden" name="redirect" value="false">
+                        
+                        <!-- Honeypot field to prevent spam -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
+                        <div>
+                            <label for="name" class="block text-light text-sm font-bold mb-2">Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="w-full"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-light text-sm font-bold mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="w-full"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-light text-sm font-bold mb-2">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5" 
+                                class="w-full resize-none"
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                            <button 
+                                type="submit" 
+                                id="submit-button"
+                                class="bg-mid text-light border-2 border-light px-8 py-3 rounded-md font-medium hover:bg-button transition duration-200"
+                            >
+                                <span id="button-text">Send Message</span>
+                                <span id="button-sending" class="hidden">Sending...</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 
                 <div class="text-center">
@@ -220,9 +191,74 @@
         </div>
     </footer>
 
-    <!-- Scroll animation script -->
+    <!-- Form submission script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handling
+            const form = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submit-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonSending = document.getElementById('button-sending');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show sending state
+                submitButton.disabled = true;
+                buttonText.classList.add('hidden');
+                buttonSending.classList.remove('hidden');
+                
+                // Hide any existing messages
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+                
+                // Collect form data
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+                
+                // Submit to Web3Forms
+                fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let data = await response.json();
+                    
+                    if (response.status === 200) {
+                        // Show success message
+                        successMessage.classList.remove('hidden');
+                        form.reset();
+                    } else {
+                        // Show error message
+                        errorText.textContent = data.message || 'Something went wrong!';
+                        errorMessage.classList.remove('hidden');
+                    }
+                    
+                    // Reset button state
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSending.classList.add('hidden');
+                })
+                .catch((error) => {
+                    // Show error message
+                    errorText.textContent = 'There was a network error. Please try again.';
+                    errorMessage.classList.remove('hidden');
+                    
+                    // Reset button state
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSending.classList.add('hidden');
+                });
+            });
+            
             // Scroll animation
             const scrollElements = document.querySelectorAll('.scroll-animate');
             
