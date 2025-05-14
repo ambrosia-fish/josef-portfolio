@@ -1,0 +1,30 @@
+/* Custom mobile menu styles */
+#mobile-menu {
+  /* Must be initially hidden */
+  display: none;
+  background-color: #0b1424;
+  z-index: 40;
+}
+
+/* Reset any Alpine.js related styles */
+[x-cloak], 
+[x-show], 
+[x-data] {
+  display: initial;
+}
+
+/* Ensure mobile menu toggle works correctly */
+#mobile-menu.active {
+  display: block !important;
+}
+
+/* Force correct display of hamburger/close icons */
+#hamburger-icon.hidden,
+#close-icon.hidden {
+  display: none !important;
+}
+
+#hamburger-icon:not(.hidden),
+#close-icon:not(.hidden) {
+  display: block !important;
+}
