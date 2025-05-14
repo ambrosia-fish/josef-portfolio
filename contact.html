@@ -12,10 +12,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts are included in the styles.css file through @import -->
     
     <!-- Custom Tailwind config -->
     <script>
@@ -39,46 +36,8 @@
         }
     </script>
     
-    <!-- Site Fonts -->
-    <link rel="stylesheet" href="css/site-fonts.css">
-    
-    <!-- Custom styles -->
-    <style>
-        /* Form styles */
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        textarea {
-            background-color: #25375c;
-            color: #d7e0ea;
-            border: 2px solid #d7e0ea;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            width: 100%;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        textarea:focus {
-            border-color: #af7479;
-            box-shadow: 0 0 0 3px rgba(175, 116, 121, 0.2);
-        }
-        
-        /* Scroll animation */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <!-- Combined styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
