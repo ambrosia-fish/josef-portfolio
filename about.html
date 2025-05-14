@@ -42,27 +42,27 @@
 <body>
     <!-- Navigation -->
     <header x-data="{ mobileMnuOpen: false }" class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center nav-logo">
                 <a href="index.html" class="flex items-center">
                     <img src="img/name-logo.png" class="h-12 w-auto" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
                 </a>
             </div>
             
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex">
+            <div class="hidden md:flex nav-links">
                 <ul role="menubar" class="flex space-x-10">
                     <li role="presentation">
-                        <a href="index.html" role="menuitem" class="text-light hover:text-button">Home</a>
+                        <a href="index.html" role="menuitem" class="text-light hover:text-button">HOME</a>
                     </li>
                     <li role="presentation">
-                        <a href="index.html#projects" role="menuitem" class="text-light hover:text-button">Projects</a>
+                        <a href="index.html#projects" role="menuitem" class="text-light hover:text-button">PROJECTS</a>
                     </li>
                     <li role="presentation">
-                        <a href="about.html" role="menuitem" class="text-light hover:text-button font-bold">About Me</a>
+                        <a href="about.html" role="menuitem" class="text-light hover:text-button font-bold">ABOUT ME</a>
                     </li>
                     <li role="presentation">
-                        <a href="contact.html" role="menuitem" class="text-light hover:text-button">Contact</a>
+                        <a href="contact.html" role="menuitem" class="text-light hover:text-button">CONTACT</a>
                     </li>
                 </ul>
             </div>
@@ -81,10 +81,10 @@
         <!-- Mobile Menu -->
         <div x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-                <a href="index.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Home</a>
-                <a href="index.html#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Projects</a>
-                <a href="about.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md font-bold">About Me</a>
-                <a href="contact.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Contact</a>
+                <a href="index.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">HOME</a>
+                <a href="index.html#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">PROJECTS</a>
+                <a href="about.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md font-bold">ABOUT ME</a>
+                <a href="contact.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">CONTACT</a>
             </div>
         </div>
     </header>
