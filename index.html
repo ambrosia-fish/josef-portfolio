@@ -54,9 +54,10 @@
             font-weight: 700 !important;
         }
         
-        /* Explicitly hide mobile menu by default */
-        .mobile-menu {
-            display: none !important;
+        /* Mobile menu style modifications */
+        #mobile-menu {
+            display: none;
+            background-color: #0b1424; /* darker background */
         }
     </style>
 </head>
@@ -100,12 +101,12 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-mid">
+        <div id="mobile-menu" class="md:hidden">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
-                <a href="#home" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">HOME</a>
-                <a href="#projects" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">PROJECTS</a>
-                <a href="about.html" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">ABOUT ME</a>
-                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">CONTACT</a>
+                <a href="#home" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
+                <a href="#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
+                <a href="about.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">ABOUT ME</a>
+                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">CONTACT</a>
             </div>
         </div>
     </header>
@@ -332,12 +333,14 @@
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Make sure the menu is hidden on load
+            // Make sure the menu is hidden on load with correct display style
             mobileMenu.style.display = 'none';
             
             // Toggle menu when hamburger is clicked
-            mobileMenuButton.addEventListener('click', function() {
-                if (mobileMenu.style.display === 'none') {
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent the click from bubbling to document
+                
+                if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
                     mobileMenu.style.display = 'block';
                     hamburgerIcon.classList.add('hidden');
                     closeIcon.classList.remove('hidden');
