@@ -39,12 +39,28 @@
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Additional inline styles for mobile menu -->
+    <!-- Mobile menu fix CSS - Added to override any conflicting styles -->
+    <link rel="stylesheet" href="css/mobile-menu-fix.css">
+    
+    <!-- Additional inline styles to force consistency -->
     <style>
-        /* Mobile menu style modifications */
+        /* BRUTALLY FORCE MENU HIDDEN - This is the only safe approach at this point */
         #mobile-menu {
-            display: none;
-            background-color: #0b1424; /* darker background */
+            display: none !important;
+        }
+        
+        /* Create a class that will be used by JS to show the menu when needed */
+        #mobile-menu.menu-show {
+            display: block !important;
+        }
+        
+        /* Controls icon visibility */
+        #hamburger-icon.icon-hide, #close-icon.icon-hide {
+            display: none !important;
+        }
+        
+        #hamburger-icon.icon-show, #close-icon.icon-show {
+            display: block !important;
         }
     </style>
 </head>
@@ -80,8 +96,8 @@
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-light focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path id="hamburger-icon" class="icon-show" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="icon-hide" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
@@ -138,7 +154,7 @@
                             
                             <div class="timeline-item">
                                 <div class="timeline-content">
-                                   <h3 class="text-xl font-bold text-light mb-2 font-secondary">Project Manager - Tech Industry</h3>
+                                    <h3 class="text-xl font-bold text-light mb-2 font-secondary">Project Manager - Tech Industry</h3>
                                     <p class="text-light mb-1">Austin, TX</p>
                                     <p class="text-light">After a move to Austin, TX, I landed as a project manager in the tech industry where I contracted for Apple for the TV App backend data, managing complex digital projects and coordinating cross-functional teams.</p>
                                 </div>
@@ -189,7 +205,7 @@
                         
                         <div class="bg-mid rounded-lg p-6 border-2 border-light">
                             <h3 class="text-xl font-bold text-light mb-4 font-secondary">Backend</h3>
-                             <div class="flex flex-wrap gap-2">
+                            <div class="flex flex-wrap gap-2">
                                 <span class="skill-bubble">Node.js</span>
                                 <span class="skill-bubble">Express</span>
                                 <span class="skill-bubble">Python</span>
@@ -257,52 +273,70 @@
         </div>
     </footer>
 
-    <!-- Mobile menu and scroll animation script -->
+    <!-- Updated mobile menu script with the same approach as index.html -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
+            // Get menu elements
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerIcon = document.getElementById('hamburger-icon');
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Make sure the menu is hidden on load with correct display style
-            mobileMenu.style.display = 'none';
+            // IMPORTANT: Ensure proper initial state by explicitly setting classes
+            hamburgerIcon.classList.add('icon-show');
+            hamburgerIcon.classList.remove('icon-hide');
+            closeIcon.classList.add('icon-hide');
+            closeIcon.classList.remove('icon-show');
             
-            // Toggle menu when hamburger is clicked
-            mobileMenuButton.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent the click from bubbling to document
-                
-                if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-                    mobileMenu.style.display = 'block';
-                    hamburgerIcon.classList.add('hidden');
-                    closeIcon.classList.remove('hidden');
+            // Brute force menu toggle function
+            function toggleMenu() {
+                console.log("Toggle menu called");
+                if (mobileMenu.classList.contains('menu-show')) {
+                    // Menu is showing, so hide it
+                    mobileMenu.classList.remove('menu-show');
+                    hamburgerIcon.classList.remove('icon-hide');
+                    hamburgerIcon.classList.add('icon-show');
+                    closeIcon.classList.remove('icon-show');
+                    closeIcon.classList.add('icon-hide');
+                    console.log("Menu hidden");
                 } else {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
+                    // Menu is hidden, so show it
+                    mobileMenu.classList.add('menu-show');
+                    hamburgerIcon.classList.remove('icon-show');
+                    hamburgerIcon.classList.add('icon-hide');
+                    closeIcon.classList.remove('icon-hide');
+                    closeIcon.classList.add('icon-show');
+                    console.log("Menu shown");
                 }
+            }
+            
+            // Add click event for menu button
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Menu button clicked");
+                toggleMenu();
             });
             
-            // Close menu when a link is clicked
+            // Close menu when links are clicked
             mobileLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
+                    if (mobileMenu.classList.contains('menu-show')) {
+                        toggleMenu();
+                    }
                 });
             });
             
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
-                const isClickInsideMenu = mobileMenu.contains(event.target);
-                const isClickOnButton = mobileMenuButton.contains(event.target);
-                
-                if (!isClickInsideMenu && !isClickOnButton && mobileMenu.style.display === 'block') {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
+                if (mobileMenu.classList.contains('menu-show')) {
+                    const isClickInsideMenu = mobileMenu.contains(event.target);
+                    const isClickOnButton = mobileMenuButton.contains(event.target);
+                    
+                    if (!isClickInsideMenu && !isClickOnButton) {
+                        toggleMenu();
+                    }
                 }
             });
             
