@@ -1,6 +1,6 @@
 /* Font imports */
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
 /* Variables */
 :root {
@@ -9,10 +9,8 @@
   --light-color-primary: #d7e0ea;
   --active-button: #af7479;
   --visited-link: #b89db8;
-  --font-primary: "Pixelify Sans", sans-serif;
-  --font-secondary: "Silkscreen", sans-serif;
-  --font-body: "Inconsolata", monospace;
-  --font-pixel: "DotGothic16", sans-serif;
+  --font-primary: "Silkscreen", sans-serif;
+  --font-body: "JetBrains Mono", monospace;
 }
 
 /* Global body font update */
@@ -22,37 +20,103 @@ body {
   background-color: var(--dark-color-primary);
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 16px; /* Slightly smaller for better readability with monospace */
+  font-weight: 400;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Keep headings as they are */
+/* Heading styles - ALL BOLD NOW */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
+  font-weight: 700; /* Bold for ALL headings */
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
 }
 
-/* Add a slightly increased line height for better readability with Inconsolata */
-p, li, input, textarea, button, .skill-bubble, .status-badge {
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+/* Text elements */
+p, li, input, textarea, .status-badge {
   font-family: var(--font-body);
   line-height: 1.6;
+  margin-bottom: 1em;
 }
 
-/* Section styles */
+/* UI elements - ALL BOLD NOW */
+button, .button, .skill-bubble, .nav-item, a {
+  font-family: var(--font-primary);
+  font-weight: 700; /* Bold for UI elements */
+}
+
+/* Force consistent styling for Silkscreen elements */
+.font-primary,
+[class*="heading"],
+.nav-item,
+.button,
+.skill-bubble,
+.section-title,
+.card-title {
+  font-family: var(--font-primary) !important;
+  font-weight: 700 !important;
+}
+
+/* Reduce spacing between sections */
 .section {
-  min-height: 70vh;
-  padding: 3rem 0;
+  min-height: 60vh; /* Reduced from 70vh */
+  padding: 2rem 0; /* Reduced from 3rem */
   display: flex;
   align-items: center;
+}
+
+/* Specific adjustment for projects section */
+#projects {
+  padding-top: 4rem; /* Reduced from original padding */
+  margin-top: -2rem; /* Negative margin to pull it up */
+}
+
+/* Fix MY WORK heading */
+#projects h2 {
+  margin-bottom: 1.5rem; /* Reduced from 2rem or more */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .section {
-    min-height: 100vh;
-    padding: 4rem 0;
+    min-height: 80vh; /* Reduced from 100vh */
+    padding: 3rem 0; /* Reduced from 4rem */
+  }
+  
+  #projects {
+    margin-top: -1.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  body {
+    font-size: 15px;
   }
 }
 
@@ -83,57 +147,136 @@ p, li, input, textarea, button, .skill-bubble, .status-badge {
   transform: translateY(-5px);
 }
 
-/* Skill bubble styles */
-.skill-bubble {
-  transition: all 0.2s ease;
-  background-color: var(--mid-color-primary);
-  color: var(--light-color-primary);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
+/* Skills list style */
+.skills-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-list li {
+  font-family: var(--font-body);
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Button Styles - Consistency */
+.btn-primary {
   display: inline-block;
-  margin: 5px;
-  border: 1px solid var(--light-color-primary);
-}
-
-.skill-bubble:hover {
-  transform: scale(1.1);
-  background-color: var(--active-button);
-}
-
-/* Timeline styles */
-.timeline-container {
-  position: relative;
-}
-
-.timeline-container::after {
-  content: '';
-  position: absolute;
-  width: 4px;
-  background-color: var(--mid-color-primary);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -2px;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 2rem;
-}
-
-.timeline-content {
-  padding: 1.5rem;
-  background-color: var(--mid-color-primary);
-  border-radius: 0.5rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  background-color: transparent;
+  color: var(--light-color-primary);
   border: 2px solid var(--light-color-primary);
-  position: relative;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
 }
 
-@media (max-width: 768px) {
-  .timeline-container::after {
-    left: 31px;
-  }
+.btn-primary:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-outline {
+  display: inline-block;
+  width: 100%;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  background-color: transparent;
+  color: var(--light-color-primary);
+  border: 2px solid var(--light-color-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-mini {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  background-color: transparent;
+  color: var(--light-color-primary);
+  border: 1px solid var(--light-color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-mini:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-mini-disabled {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  background-color: transparent;
+  color: var(--mid-color-primary);
+  border: 1px solid var(--mid-color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid var(--light-color-primary);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Link styles */
+a {
+  color: var(--light-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:visited {
+  color: var(--visited-link);
+}
+
+a:hover,
+a:focus {
+  color: var(--active-button);
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--light-color-primary);
 }
 
 /* Form styles */
@@ -159,61 +302,42 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(175, 116, 121, 0.2);
 }
 
-/* Link styles */
-a {
-  color: var(--light-color-primary);
-  text-decoration: none;
-}
-
-a:visited {
-  color: var(--visited-link);
-}
-
-a:hover,
-a:focus {
-  color: var(--active-button);
-  text-decoration: none;
-}
-
-a:active {
-  color: var(--light-color-primary);
-}
-
-/* Button styles */
-button,
-.button {
-  font-family: var(--font-primary);
-  background-color: var(--mid-color-primary);
-  color: var(--light-color-primary);
-  border: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 3px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition: opacity 0.2s;
-}
-
-button:hover,
-button:focus,
-.button:hover,
-.button:focus {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-button:active,
-.button:active {
-  background-color: var(--active-button);
-  color: var(--dark-color-primary);
-}
-
 /* Responsive styles */
 @media all and (max-width: 750px) {
-  h1 {
-    font-size: 22px;
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  button, .button {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 }
 
 @media all and (max-width: 500px) {
-  /* Add mobile-specific styles here */
+  body {
+    font-size: 14px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .btn-mini {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* Add this to debug font issues if needed */
+.silkscreen-debug::after {
+  content: "Silkscreen applied";
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(255,0,0,0.5);
+  color: white;
+  padding: 5px;
+  z-index: 9999;
+  font-family: var(--font-body);
 }
