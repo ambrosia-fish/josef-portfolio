@@ -217,6 +217,9 @@ button:active,
   .page-header_item:last-child {
     margin-top: 10px;
     text-align: center;
+    background-color: rgba(11, 20, 36, 0.9); /* Semi-transparent background for mobile menu */
+    padding: 10px;
+    border-radius: 5px;
   }
 }
 
