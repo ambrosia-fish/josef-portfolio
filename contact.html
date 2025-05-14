@@ -105,10 +105,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-                <a href="index.html" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">HOME</a>
-                <a href="index.html#projects" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">PROJECTS</a>
-                <a href="about.html" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md mobile-link">ABOUT ME</a>
-                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md font-bold mobile-link">CONTACT</a>
+                <a href="index.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
+                <a href="index.html#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
+                <a href="about.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">ABOUT ME</a>
+                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md font-bold mobile-link">CONTACT</a>
             </div>
         </div>
     </header>
@@ -325,11 +325,11 @@
                        // Show success message
                         successMessage.classList.remove('hidden');
                         form.reset();
-                     } else {
+                    } else {
                         // Show error message
                         errorText.textContent = data.message || 'Something went wrong!';
                         errorMessage.classList.remove('hidden');
-                     }
+                    }
                   
                     // Reset button state
                     submitButton.disabled = false;
