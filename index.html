@@ -92,10 +92,10 @@
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-light focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                   </svg>
                 </button>
             </div>
         </nav>
@@ -333,14 +333,16 @@
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Make sure the menu is hidden on load with correct display style
+            // Explicitly ensure the menu is hidden on load
             mobileMenu.style.display = 'none';
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
             
             // Toggle menu when hamburger is clicked
             mobileMenuButton.addEventListener('click', function(e) {
                 e.stopPropagation(); // Prevent the click from bubbling to document
                 
-                if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                if (mobileMenu.style.display === 'none') {
                     mobileMenu.style.display = 'block';
                     hamburgerIcon.classList.add('hidden');
                     closeIcon.classList.remove('hidden');
@@ -413,7 +415,7 @@
                     if (elementInView(el, 100)) {
                         displayScrollElement(el);
                     } else {
-                       hideScrollElement(el);
+                        hideScrollElement(el);
                     }
                 });
             };
