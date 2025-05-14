@@ -54,7 +54,7 @@
             font-weight: 700 !important;
         }
         
-        /* Mobile menu style modifications */
+        /* Mobile menu style modifications - HIDDEN BY DEFAULT */
         #mobile-menu {
             display: none;
             background-color: #0b1424; /* darker background */
@@ -323,43 +323,47 @@
         </div>
     </footer>
 
-    <!-- Mobile menu and scroll animation script -->
+    <!-- Completely rewritten mobile menu script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
+            // Get menu elements
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerIcon = document.getElementById('hamburger-icon');
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Explicitly ensure the menu is hidden on load
-            mobileMenu.style.display = 'none';
-            hamburgerIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
+            // Function to close menu
+            function closeMenu() {
+                mobileMenu.style.display = 'none';
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
             
-            // Toggle menu when hamburger is clicked
+            // Function to open menu
+            function openMenu() {
+                mobileMenu.style.display = 'block';
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+            
+            // Ensure menu is closed on page load
+            closeMenu();
+            
+            // Toggle menu when button is clicked
             mobileMenuButton.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent the click from bubbling to document
+                e.stopPropagation();
                 
                 if (mobileMenu.style.display === 'none') {
-                    mobileMenu.style.display = 'block';
-                    hamburgerIcon.classList.add('hidden');
-                    closeIcon.classList.remove('hidden');
+                    openMenu();
                 } else {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
+                    closeMenu();
                 }
             });
             
             // Close menu when a link is clicked
             mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                });
+                link.addEventListener('click', closeMenu);
             });
             
             // Close menu when clicking outside
@@ -368,9 +372,7 @@
                 const isClickOnButton = mobileMenuButton.contains(event.target);
                 
                 if (!isClickInsideMenu && !isClickOnButton && mobileMenu.style.display === 'block') {
-                    mobileMenu.style.display = 'none';
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
+                    closeMenu();
                 }
             });
 
@@ -420,13 +422,11 @@
                 });
             };
             
-            // Initialize
+            // Initialize scroll animations
             handleScrollAnimation();
             
             // Add scroll event
-            window.addEventListener('scroll', () => {
-                handleScrollAnimation();
-            });
+            window.addEventListener('scroll', handleScrollAnimation);
         });
     </script>
 </body>
