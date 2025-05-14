@@ -95,26 +95,14 @@
                 <h1 class="text-4xl font-bold text-light mb-6 text-center font-primary">CONTACT ME</h1>
                 
                 <div class="bg-mid rounded-lg shadow-md p-8 mb-10 border-2 border-light">
-                    <!-- Web3Forms-inspired contact form -->
+                    <!-- Web3Forms contact form with actual functionality -->
                     <div x-data="{ 
                         isSubmitting: false,
                         submitSuccess: false,
                         submitError: false,
-                        name: '',
-                        email: '',
-                        message: '',
-                        submitForm() {
-                           this.isSubmitting = true;
-                           // Simulate form submission
-                           setTimeout(() => {
-                               if (this.email && this.message) {
-                                   this.submitSuccess = true;
-                                   this.isSubmitting = false;
-                               } else {
-                                   this.submitError = true;
-                                   this.isSubmitting = false;
-                               }
-                           }, 1500);
+                        errorMessage: '',
+                        resetForm() {
+                            document.getElementById('contactForm').reset();
                         }
                     }">
                         <h2 class="text-2xl font-bold text-light mb-4 font-primary">SEND ME A MESSAGE</h2>
@@ -126,20 +114,34 @@
                         
                         <!-- Error message -->
                         <div x-show="submitError" class="bg-red-800 border border-red-600 text-light px-4 py-3 rounded mb-4">
-                            <p>There was an error sending your message. Please try again.</p>
+                            <p x-text="errorMessage || 'There was an error sending your message. Please try again.'"></p>
                         </div>
                         
-                        <form @submit.prevent="submitForm" class="space-y-4">
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" x-on:submit="isSubmitting = true">
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="4754fa88-b05e-4e97-b0ac-88d33a20382a">
+                            
+                            <!-- Optional: Subject -->
+                            <input type="hidden" name="subject" value="New Contact Form Submission - Portfolio">
+                            
+                            <!-- Optional: From Name -->
+                            <input type="hidden" name="from_name" value="Josef's Portfolio Contact Form">
+                            
+                            <!-- Optional: Redirect URL -->
+                            <input type="hidden" name="redirect" value="false">
+                            
+                            <!-- Honeypot field to prevent spam -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
                             <div>
                                 <label for="name" class="block text-light text-sm font-bold mb-2">Name</label>
                                 <input 
                                     type="text" 
                                     id="name" 
                                     name="name" 
-                                    x-model="name"
                                     class="w-full"
                                     required
-                                 >
+                                >
                             </div>
                             
                             <div>
@@ -148,10 +150,9 @@
                                     type="email" 
                                     id="email" 
                                     name="email" 
-                                    x-model="email"
                                     class="w-full"
                                     required
-                                 >
+                                >
                             </div>
                             
                             <div>
@@ -160,7 +161,6 @@
                                     id="message" 
                                     name="message" 
                                     rows="5" 
-                                    x-model="message"
                                     class="w-full resize-none"
                                     required
                                 ></textarea>
@@ -178,6 +178,52 @@
                             </div>
                         </form>
                     </div>
+
+                    <!-- Web3Forms Ajax Script -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const form = document.getElementById('contactForm');
+                            const formData = new FormData(form);
+                            
+                            form.addEventListener('submit', function (e) {
+                                e.preventDefault();
+                                
+                                const formData = new FormData(form);
+                                const object = Object.fromEntries(formData);
+                                const json = JSON.stringify(object);
+                                
+                                fetch("https://api.web3forms.com/submit", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        Accept: "application/json"
+                                    },
+                                    body: json
+                                })
+                                .then(async (response) => {
+                                    let data = await response.json();
+                                    
+                                    if (response.status === 200) {
+                                        Alpine.store('formStatus', { isSubmitting: false, submitSuccess: true });
+                                        document.getElementById('contactForm').reset();
+                                    } else {
+                                        Alpine.store('formStatus', { 
+                                            isSubmitting: false, 
+                                            submitError: true,
+                                            errorMessage: data.message || 'Something went wrong!'
+                                        });
+                                    }
+                                })
+                                .catch((error) => {
+                                    Alpine.store('formStatus', { 
+                                        isSubmitting: false, 
+                                        submitError: true,
+                                        errorMessage: 'There was a network error. Please try again.'
+                                    });
+                                });
+                            });
+                        });
+                    </script>
                 </div>
                 
                 <div class="text-center">
@@ -211,6 +257,16 @@
     <!-- Scroll animation script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Alpine.js store for form status
+            if (typeof Alpine !== 'undefined') {
+                Alpine.store('formStatus', {
+                    isSubmitting: false,
+                    submitSuccess: false,
+                    submitError: false,
+                    errorMessage: ''
+                });
+            }
+            
             // Scroll animation
             const scrollElements = document.querySelectorAll('.scroll-animate');
             
