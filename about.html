@@ -39,14 +39,11 @@
         }
     </script>
     
+    <!-- Site Fonts -->
+    <link rel="stylesheet" href="css/site-fonts.css">
+    
     <!-- Custom styles -->
     <style>
-        body {
-            font-family: 'Pixelify Sans', sans-serif;
-            color: #d7e0ea;
-            background-color: #0b1424;
-        }
-        
         .section {
             min-height: 70vh;
             padding: 3rem 0;
@@ -122,7 +119,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <header x-data="{ mobileMenuOpen: false }" class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
+    <header x-data="{ mobileMnuOpen: false }" class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <a href="index.html" class="flex items-center">
@@ -150,22 +147,22 @@
             
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-light focus:outline-none">
+                <button @click="mobileMnuOpen = !mobileMnuOpen" class="text-light focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path x-show="!mobileMnuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="mobileMnuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
         </nav>
         
         <!-- Mobile Menu -->
-        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="md:hidden bg-mid">
+        <div x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-                <a href="index.html" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Home</a>
-                <a href="index.html#projects" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Projects</a>
-                <a href="about.html" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md font-bold">About Me</a>
-                <a href="contact.html" @click="mobileMenuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Contact</a>
+                <a href="index.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Home</a>
+                <a href="index.html#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Projects</a>
+                <a href="about.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md font-bold">About Me</a>
+                <a href="contact.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">Contact</a>
             </div>
         </div>
     </header>
