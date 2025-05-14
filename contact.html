@@ -37,6 +37,14 @@
     
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Additional inline styles for mobile menu -->
+    <style>
+        /* Hide mobile menu by default for faster loading */
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -78,7 +86,7 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
+        <div x-cloak x-show="mobileMnuOpen" @click.away="mobileMnuOpen = false" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
                 <a href="index.html" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">HOME</a>
                 <a href="index.html#projects" @click="mobileMnuOpen = false" class="block px-3 py-2 text-light hover:bg-dark hover:text-light rounded-md">PROJECTS</a>
@@ -220,8 +228,8 @@
                const object = Object.fromEntries(formData);
                 const json = JSON.stringify(object);
                 
-                // Submit to Web3Forms
-                fetch("https://api.web3forms.com/submit", {
+               // Submit to Web3Forms
+               fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -229,16 +237,16 @@
                     },
                     body: json
                 })
-                .then(async (response) => {
-                   let data = await response.json();
+               .then(async (response) => {
+                  let data = await response.json();
                     
                     if (response.status === 200) {
                         // Show success message
-                       successMessage.classList.remove('hidden');
+                        successMessage.classList.remove('hidden');
                         form.reset();
-                    } else {
+                     } else {
                         // Show error message
-                       errorText.textContent = data.message || 'Something went wrong!';
+                        errorText.textContent = data.message || 'Something went wrong!';
                         errorMessage.classList.remove('hidden');
                     }
                    
@@ -248,9 +256,9 @@
                     buttonSending.classList.add('hidden');
                 })
                 .catch((error) => {
-                    // Show error message
-                    errorText.textContent = 'There was a network error. Please try again.';
-                    errorMessage.classList.remove('hidden');
+                   // Show error message
+                   errorText.textContent = 'There was a network error. Please try again.';
+                   errorMessage.classList.remove('hidden');
                    
                     // Reset button state
                     submitButton.disabled = false;
@@ -265,7 +273,7 @@
             const elementInView = (el, scrollOffset = 100) => {
                 const elementTop = el.getBoundingClientRect().top;
                 return (
-                   elementTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
                 );
             };
             
