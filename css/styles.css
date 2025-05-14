@@ -95,6 +95,8 @@ button, .button, .skill-bubble, .nav-item, a {
 /* Header alignment fix */
 header nav {
   height: 70px; /* Fixed height for header */
+  display: flex;
+  align-items: center;
 }
 
 header .nav-logo {
@@ -118,6 +120,20 @@ header .nav-links ul {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+header .nav-links li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+header .nav-links a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
 }
 
 /* Responsive adjustments */
