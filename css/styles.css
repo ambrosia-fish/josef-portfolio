@@ -136,6 +136,75 @@ header .nav-links a {
   padding: 0 10px;
 }
 
+/* Mobile navigation fixes to make hidden actually work */
+@media (max-width: 900px) {
+  /* Force hidden style for mobile navigation to take precedence */
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  /* Force mobile button to display */
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  /* Make menu work properly on mobile */
+  header div[x-show="mobileMnuOpen"] {
+    display: none;
+  }
+  
+  header div[x-show="mobileMnuOpen"][style*="display: block"] {
+    display: block !important;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  
+  /* Fix for Alpine.js elements showing on page load */
+  [x-cloak] {
+    display: none !important;
+  }
+  
+  /* Improved spacing for menu items */
+  header div[x-show="mobileMnuOpen"] a {
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+  }
+  
+  /* Better toggle button spacing */
+  header button {
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+  
+  header .nav-logo span {
+    font-size: 1.5rem !important;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  body {
+    font-size: 15px;
+  }
+  
+  /* Better button sizing on mobile */
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
 /* Mobile Hero Section Structure - Reversed */
 @media (max-width: 767px) {
   #home .flex.flex-col.md\:flex-row {
@@ -162,54 +231,6 @@ header .nav-links a {
     display: block;
     max-width: 80%;
   }
-}
-
-/* Responsive adjustments - trigger mobile view earlier */
-@media (max-width: 900px) {
-  .md\:hidden {
-    display: block !important;
-  }
-  
-  .hidden.md\:flex {
-    display: none !important;
-  }
-  
-  .md\:flex {
-    display: none !important;
-  }
-  
-  h1 {
-    font-size: 1.75rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
-  }
-  
-  body {
-    font-size: 15px;
-  }
-  
-  /* Mobile navigation improvements */
-  header .nav-logo span {
-    font-size: 1.5rem !important;
-  }
-  
-  /* Improved mobile menu */
-  header div[x-show="mobileMnuOpen"] {
-    max-height: 85vh;
-    overflow-y: auto;
-  }
-  
-  /* Better padding for mobile menu items */
-  header div[x-show="mobileMnuOpen"] a {
-    padding: 0.75rem 1rem;
-    margin: 0.25rem 0;
-  }
   
   /* Hero section adjustments for mobile */
   #home .container > div {
@@ -223,14 +244,6 @@ header .nav-links a {
   
   .project-card h3 {
     font-size: 1.25rem;
-  }
-  
-  /* Better button sizing on mobile */
-  .btn-primary, .btn-outline {
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
   }
 }
 
