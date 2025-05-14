@@ -157,9 +157,6 @@ header .nav-links a {
     display: block !important;
     max-height: 85vh;
     overflow-y: auto;
-    background-color: rgba(11, 20, 36, 0.9); /* Semi-transparent background for mobile menu */
-    padding: 10px;
-    border-radius: 5px;
   }
   
   /* Fix for Alpine.js elements showing on page load */
