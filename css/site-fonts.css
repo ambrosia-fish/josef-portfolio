@@ -1,0 +1,33 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap');
+
+/* Variables */
+:root {
+  --dark-color-primary: #0b1424;
+  --mid-color-primary: #25375c;
+  --light-color-primary: #d7e0ea;
+  --active-button: #af7479;
+  --visited-link: #b89db8;
+  --font-primary: "Pixelify Sans", sans-serif;
+  --font-secondary: "Silkscreen", sans-serif;
+  --font-body: "Inconsolata", monospace;
+  --font-pixel: "DotGothic16", sans-serif;
+}
+
+/* Global body font update */
+body {
+  font-family: var(--font-body);
+}
+
+/* Keep headings as they are */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+}
+
+/* Add a slightly increased line height for better readability with Inconsolata */
+p, li, input, textarea, button, .skill-bubble, .status-badge {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* The rest of the styling is inherited from the existing stylesheet */
