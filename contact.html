@@ -95,15 +95,12 @@
                 <h1 class="text-4xl font-bold text-light mb-6 text-center font-primary">CONTACT ME</h1>
                 
                 <div class="bg-mid rounded-lg shadow-md p-8 mb-10 border-2 border-light">
-                    <!-- Web3Forms contact form with actual functionality -->
+                    <!-- Web3Forms contact form with inline script for submission -->
                     <div x-data="{ 
                         isSubmitting: false,
                         submitSuccess: false,
                         submitError: false,
-                        errorMessage: '',
-                        resetForm() {
-                            document.getElementById('contactForm').reset();
-                        }
+                        errorMessage: ''
                     }">
                         <h2 class="text-2xl font-bold text-light mb-4 font-primary">SEND ME A MESSAGE</h2>
                         
@@ -117,19 +114,40 @@
                             <p x-text="errorMessage || 'There was an error sending your message. Please try again.'"></p>
                         </div>
                         
-                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" x-on:submit="isSubmitting = true">
-                            <!-- Web3Forms Access Key -->
-                            <input type="hidden" name="access_key" value="4754fa88-b05e-4e97-b0ac-88d33a20382a">
-                            
-                            <!-- Optional: Subject -->
-                            <input type="hidden" name="subject" value="New Contact Form Submission - Portfolio">
-                            
-                            <!-- Optional: From Name -->
-                            <input type="hidden" name="from_name" value="Josef's Portfolio Contact Form">
-                            
-                            <!-- Optional: Redirect URL -->
-                            <input type="hidden" name="redirect" value="false">
-                            
+                        <form id="contactForm" @submit.prevent="
+                            isSubmitting = true;
+                            fetch('https://api.web3forms.com/submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    access_key: '4754fa88-b05e-4e97-b0ac-88d33a20382a',
+                                    subject: 'New Contact Form Submission - Portfolio',
+                                    from_name: 'Josef\\'s Portfolio Contact Form',
+                                    name: document.getElementById('name').value,
+                                    email: document.getElementById('email').value,
+                                    message: document.getElementById('message').value
+                                })
+                            })
+                            .then(async (response) => {
+                                let result = await response.json();
+                                isSubmitting = false;
+                                if (response.status == 200) {
+                                    submitSuccess = true;
+                                    document.getElementById('contactForm').reset();
+                                } else {
+                                    submitError = true;
+                                    errorMessage = result.message || 'Something went wrong!';
+                                }
+                            })
+                            .catch(error => {
+                                isSubmitting = false;
+                                submitError = true;
+                                errorMessage = 'There was a network error. Please try again.';
+                            })
+                        " class="space-y-4">
                             <!-- Honeypot field to prevent spam -->
                             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                             
@@ -178,52 +196,6 @@
                             </div>
                         </form>
                     </div>
-
-                    <!-- Web3Forms Ajax Script -->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const form = document.getElementById('contactForm');
-                            const formData = new FormData(form);
-                            
-                            form.addEventListener('submit', function (e) {
-                                e.preventDefault();
-                                
-                                const formData = new FormData(form);
-                                const object = Object.fromEntries(formData);
-                                const json = JSON.stringify(object);
-                                
-                                fetch("https://api.web3forms.com/submit", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        Accept: "application/json"
-                                    },
-                                    body: json
-                                })
-                                .then(async (response) => {
-                                    let data = await response.json();
-                                    
-                                    if (response.status === 200) {
-                                        Alpine.store('formStatus', { isSubmitting: false, submitSuccess: true });
-                                        document.getElementById('contactForm').reset();
-                                    } else {
-                                        Alpine.store('formStatus', { 
-                                            isSubmitting: false, 
-                                            submitError: true,
-                                            errorMessage: data.message || 'Something went wrong!'
-                                        });
-                                    }
-                                })
-                                .catch((error) => {
-                                    Alpine.store('formStatus', { 
-                                        isSubmitting: false, 
-                                        submitError: true,
-                                        errorMessage: 'There was a network error. Please try again.'
-                                    });
-                                });
-                            });
-                        });
-                    </script>
                 </div>
                 
                 <div class="text-center">
@@ -251,16 +223,6 @@
     <!-- Scroll animation script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Alpine.js store for form status
-            if (typeof Alpine !== 'undefined') {
-                Alpine.store('formStatus', {
-                    isSubmitting: false,
-                    submitSuccess: false,
-                    submitError: false,
-                    errorMessage: ''
-                });
-            }
-            
             // Scroll animation
             const scrollElements = document.querySelectorAll('.scroll-animate');
             
