@@ -104,7 +104,7 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden">
+        <div id="mobile-menu" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
                 <a href="index.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
                 <a href="index.html#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
@@ -354,16 +354,16 @@
                 element.classList.add('visible');
             };
             
-            const handleScrollAnimation = () => {
+            // Initialize
+            setTimeout(handleScrollAnimation, 100);
+            
+            function handleScrollAnimation() {
                 scrollElements.forEach((el) => {
                     if (elementInView(el, 100)) {
                         displayScrollElement(el);
                     }
                 });
-            };
-            
-            // Initialize
-            setTimeout(handleScrollAnimation, 100);
+            }
         });
     </script>
 </body>
