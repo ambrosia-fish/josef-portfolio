@@ -39,6 +39,9 @@
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- Mobile menu fix CSS - Added to override any conflicting styles -->
+    <link rel="stylesheet" href="css/mobile-menu-fix.css">
+    
     <!-- Additional inline styles to force consistency -->
     <style>
         /* Force Silkscreen bold on all necessary elements */
@@ -52,12 +55,6 @@
         a[href]:not(.no-primary-font) {
             font-family: "Silkscreen", sans-serif !important;
             font-weight: 700 !important;
-        }
-        
-        /* Mobile menu style modifications - HIDDEN BY DEFAULT */
-        #mobile-menu {
-            display: none;
-            background-color: #0b1424; /* darker background */
         }
     </style>
 </head>
@@ -323,7 +320,7 @@
         </div>
     </footer>
 
-    <!-- Completely rewritten mobile menu script -->
+    <!-- Simple mobile menu script with explicit DOM manipulation -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get menu elements
@@ -333,46 +330,54 @@
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Function to close menu
-            function closeMenu() {
-                mobileMenu.style.display = 'none';
-                hamburgerIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-            
-            // Function to open menu
-            function openMenu() {
-                mobileMenu.style.display = 'block';
-                hamburgerIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            }
-            
-            // Ensure menu is closed on page load
-            closeMenu();
+            // IMPORTANT: Ensure menu is properly closed on page load
+            mobileMenu.style.display = 'none';
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
             
             // Toggle menu when button is clicked
             mobileMenuButton.addEventListener('click', function(e) {
+                console.log('Mobile menu button clicked'); // Debug
+                e.preventDefault();
                 e.stopPropagation();
                 
-                if (mobileMenu.style.display === 'none') {
-                    openMenu();
+                const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none';
+                
+                if (isMenuVisible) {
+                    // Close menu
+                    mobileMenu.style.display = 'none';
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    console.log('Menu closed'); // Debug
                 } else {
-                    closeMenu();
+                    // Open menu
+                    mobileMenu.style.display = 'block';
+                    hamburgerIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                    console.log('Menu opened'); // Debug
                 }
             });
             
             // Close menu when a link is clicked
             mobileLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
+                link.addEventListener('click', function() {
+                    mobileMenu.style.display = 'none';
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
             });
             
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
-                const isClickInsideMenu = mobileMenu.contains(event.target);
-                const isClickOnButton = mobileMenuButton.contains(event.target);
-                
-                if (!isClickInsideMenu && !isClickOnButton && mobileMenu.style.display === 'block') {
-                    closeMenu();
+                if (mobileMenu.style.display === 'block') {
+                    const isClickInsideMenu = mobileMenu.contains(event.target);
+                    const isClickOnButton = mobileMenuButton.contains(event.target);
+                    
+                    if (!isClickInsideMenu && !isClickOnButton) {
+                        mobileMenu.style.display = 'none';
+                        hamburgerIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
                 }
             });
 
@@ -422,11 +427,13 @@
                 });
             };
             
-            // Initialize scroll animations
+            // Initialize
             handleScrollAnimation();
             
             // Add scroll event
-            window.addEventListener('scroll', handleScrollAnimation);
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
         });
     </script>
 </body>
