@@ -58,16 +58,16 @@
 <body class="font-body">
     <!-- Navigation -->
     <header x-data="{ mobileMnuOpen: false }" class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
-        <nav class="container mx-auto px-6 flex justify-between items-center">
+        <nav class="container mx-auto px-4 md:px-6 flex justify-between items-center">
             <div class="flex items-center nav-logo">
                 <a href="index.html" class="flex items-center">
-                    <span class="text-2xl md:text-3xl font-primary tracking-wider text-light">JOSEF AMEUR</span>
+                    <span class="text-xl md:text-3xl font-primary tracking-wider text-light">JOSEF AMEUR</span>
                 </a>
             </div>
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex nav-links">
-                <ul role="menubar" class="flex items-center space-x-10 font-primary">
+                <ul role="menubar" class="flex items-center space-x-6 md:space-x-10 font-primary">
                     <li role="presentation">
                         <a href="#home" role="menuitem" class="text-light hover:text-button">HOME</a>
                     </li>
@@ -107,25 +107,18 @@
 
     <!-- Hero Section -->
     <section id="home" class="section pt-24 pb-8">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- This flex container will be reversed on mobile by CSS rules -->
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl leading-tight mb-6 font-primary">HELLO WORLD!</h1>
+                <!-- Text Content Area -->
+                <div class="md:w-1/2 mb-6 md:mb-0 text-center md:text-left">
+                    <h1 class="text-3xl md:text-5xl leading-tight mb-6 font-primary">HELLO WORLD!</h1>
                     <p class="text-lg mb-4">
                         My name is Josef Ameur and I'm a <span class="font-medium">full stack developer</span> from Rhode Island.
                     </p>
                     
-                    <!-- Status indicator -->
-                    <!-- <div class="inline-block bg-mid border border-light px-3 py-1 rounded-full text-sm mb-8">
-                        <span class="flex items-center">
-                            <svg class="h-3 w-3 mr-2 animate-pulse" fill="#af7479" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" />
-                            </svg>
-                            Currently seeking new opportunities
-                        </span>
-                    </div> -->
-                    
-                    <div class="flex space-x-6 mb-8">
+                    <!-- Social Icons - Centered on mobile -->
+                    <div class="flex space-x-6 mb-8 justify-center md:justify-start">
                         <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                         </a>
@@ -134,11 +127,16 @@
                         </a>
                     </div>
                     
-                    <a href="#projects" class="btn-primary inline-block">VIEW MY PROJECTS</a>
+                    <!-- Button - Centered on mobile -->
+                    <div class="text-center md:text-left">
+                        <a href="#projects" class="btn-primary inline-block">VIEW MY PROJECTS</a>
+                    </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center items-center">
-                    <div class="w-full flex justify-center py-8 md:py-12">
-                        <img src="img/josef-headshot.jpg" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day." class="w-4/5 max-w-sm mx-auto rounded-full border-4 border-light">
+                
+                <!-- Profile Image Area - Will appear first on mobile -->
+                <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0">
+                    <div class="w-full flex justify-center">
+                        <img src="img/josef-headshot.jpg" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day." class="w-2/3 md:w-4/5 max-w-sm mx-auto rounded-full border-4 border-light">
                     </div>
                 </div>
             </div>
@@ -147,14 +145,14 @@
 
     <!-- Projects Section -->
     <section id="projects" class="py-8 bg-dark">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl text-light mb-8 text-center font-primary">MY WORK</h2>
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl text-light mb-8 text-center font-primary">MY WORK</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Sci-Flix Project -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
+                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">SCI-FLIX</h3>
                         <p class="text-light mb-4">
                             A web application and API focused on sci-fi films. Users can browse, search, and interact with a collection of sci-fi movies.
@@ -176,8 +174,8 @@
                 
                 <!-- Meet App Project -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/meet-app-screenshot.png" alt="Meet App Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
+                    <img src="img/meet-app-screenshot.png" alt="Meet App Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">MEET APP</h3>
                         <p class="text-light mb-4">
                             A responsive React application designed to help users discover and manage local events with features like city-based filtering and offline functionality.
@@ -198,8 +196,8 @@
                 
                 <!-- Pokedex App Project -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/bulbasaur.png" alt="Pokedex App Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
+                    <img src="img/bulbasaur.png" alt="Pokedex App Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">POKEDEX APP</h3>
                         <p class="text-light mb-4">
                             A simple Pokedex application that pulls data from PokeAPI to create a list of the first 150 pokemon with detailed stats.
@@ -220,10 +218,10 @@
                 
                 <!-- Legacy Video Work -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <div class="w-full h-48 relative">
-                        <iframe src="https://player.vimeo.com/video/917228888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" class="absolute top-0 left-0 w-full h-full" title="Joe Aziz - Reel"></iframe>
+                    <div class="w-full h-40 md:h-48 relative">
+                        <iframe src="https://player.vimeo.com/video/91722888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" class="absolute top-0 left-0 w-full h-full" title="Joe Aziz - Reel"></iframe>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">LEGACY VIDEO WORK</h3>
                         <p class="text-light mb-4">
                             Previous work as a videographer handling all aspects of production including camera operation, editing, sound, and more.
@@ -236,17 +234,17 @@
                             </ul>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <a href="https://vimeo.com/917228888?share=copy" target="_blank" class="btn-mini">View Reel</a>
+                            <a href="https://vimeo.com/91722888?share=copy" target="_blank" class="btn-mini">View Reel</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Mothaga Game -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <div class="w-full h-48 bg-dark flex items-center justify-center">
+                    <div class="w-full h-40 md:h-48 bg-dark flex items-center justify-center">
                         <h3 class="text-light text-2xl font-primary">MOTHAGA</h3>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">MOTHAGA</h3>
                         <p class="text-light mb-4">
                             An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
@@ -266,8 +264,8 @@
                 
                 <!-- Portfolio Website -->
                 <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="w-full h-48 object-cover">
-                    <div class="p-6">
+                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
                         <h3 class="text-xl text-light mb-2 font-primary">THIS PORTFOLIO</h3>
                         <p class="text-light mb-4">
                             My personal portfolio site built to showcase my projects and skills.
@@ -290,13 +288,13 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="py-16 bg-mid text-light">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl mb-6 font-primary">LET'S WORK TOGETHER</h2>
+    <section class="py-12 md:py-16 bg-mid text-light">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-2xl md:text-3xl mb-6 font-primary">LET'S WORK TOGETHER</h2>
             <p class="text-lg mb-8 max-w-2xl mx-auto">
                 I'm currently seeking new opportunities in full stack development. Feel free to reach out to discuss how my skills and experience can benefit your team.
             </p>
-            <div class="flex flex-col gap-4 justify-center max-w-xs mx-auto">
+            <div class="flex flex-col md:flex-row gap-4 justify-center max-w-xs mx-auto md:max-w-md">
                 <a href="about.html" class="btn-outline">LEARN MORE ABOUT ME</a>
                 <a href="contact.html" class="btn-outline">CONTACT ME</a>
             </div>
@@ -305,7 +303,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-light py-6">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-center mb-4 font-primary">FIND ME ON:</h2>
             <div class="flex justify-center gap-5 mb-4">
                 <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="btn-icon">
@@ -326,10 +324,10 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+                   
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
+                   
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         targetElement.scrollIntoView({
@@ -359,11 +357,11 @@
             };
             
             const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
+               scrollElements.forEach((el) => {
                     if (elementInView(el, 100)) {
                         displayScrollElement(el);
                     } else {
-                        hideScrollElement(el);
+                       hideScrollElement(el);
                     }
                 });
             };
