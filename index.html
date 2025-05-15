@@ -1,64 +1,459 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Josef Ameur - Home</title>
-        <link rel="shortcut icon" href="img/josef-favicon.png">
-        <link rel="stylesheet" href="css/styles.production.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
-    <body>
-        <header class="page-header">
-            <img src="img/name-logo.png" class="page-header_item logo" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
-            <nav class="page-header_item">
-                <ul role="menubar" class="navigation-list">
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josef Ameur - Home</title>
+    <link rel="shortcut icon" href="img/josef-favicon.png">
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Updated for JetBrains Mono and Silkscreen -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0b1424',       // --dark-color-primary
+                        mid: '#25375c',        // --mid-color-primary
+                        light: '#d7e0ea',      // --light-color-primary
+                        button: '#af7479',     // --active-button
+                        link: '#b89db8'        // --visited-link
+                    },
+                    fontFamily: {
+                        primary: ['Silkscreen', 'sans-serif'],
+                        body: ['"JetBrains Mono"', 'monospace']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Combined styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Additional inline styles to force consistency -->
+    <style>
+        /* Force Silkscreen bold on all necessary elements */
+        .font-primary,
+        h1, h2, h3, h4, h5, h6,
+        .nav-item, 
+        button, .button, 
+        .skill-bubble,
+        .section-title,
+        .card-title,
+        a[href]:not(.no-primary-font) {
+            font-family: "Silkscreen", sans-serif !important;
+            font-weight: 700 !important;
+        }
+        
+        /* BRUTALLY FORCE MENU HIDDEN - This is the only safe approach at this point */
+        #mobile-menu {
+            display: none !important;
+        }
+        
+        /* Create a class that will be used by JS to show the menu when needed */
+        #mobile-menu.menu-show {
+            display: block !important;
+        }
+        
+        /* Controls icon visibility */
+        #hamburger-icon.icon-hide, #close-icon.icon-hide {
+            display: none !important;
+        }
+        
+        #hamburger-icon.icon-show, #close-icon.icon-show {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="font-body">
+    <!-- Navigation -->
+    <header class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
+        <nav class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center nav-logo">
+                <a href="index.html" class="flex items-center">
+                    <span class="text-xl md:text-3xl font-primary tracking-wider text-light">JOSEF AMEUR</span>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex nav-links">
+                <ul role="menubar" class="flex items-center space-x-6 md:space-x-10 font-primary">
                     <li role="presentation">
-                        <a href="index.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Home</a>
+                        <a href="#home" role="menuitem" class="text-light hover:text-button">HOME</a>
                     </li>
                     <li role="presentation">
-                        <a href="about.html" role="menuitem" class="navigation-list_item">About Me</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="work.html" role="menuitem" class="navigation-list_item">Work</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="contact.html" role="menuitem" class="navigation-list_item">Contact</a>
+                        <a href="#projects" role="menuitem" class="text-light hover:text-button">PROJECTS</a>
                     </li>
                     <li role="presentation">
-                        <a href="case-study.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Case Study</a>
+                        <a href="about.html" role="menuitem" class="text-light hover:text-button">ABOUT ME</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="contact.html" role="menuitem" class="text-light hover:text-button">CONTACT</a>
                     </li>
                 </ul>
-            </nav>
-        </header>
-        <main class="profile">
-            <!--add photo of Josef-->
-            <img src="img/josef-headshot.jpg" class="profile_portrait" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day.">
-            <h1>Hello World!</h1>
-            <p class="intro">
-                My name is Josef Ameur and I'm a <span>web</span> developer from Rhode Island.
-            </p>
-            <a href="work.html">Check out some of my projects!</a>
-        </main>
-        <footer class="page_footer">
-            <h2>Find me on:</h2>
-            <div class="social-media">
-                <!--add social links-->
-                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer">
-                    <img src="img/github-icon.svg" alt="Github Link">
-                </a>
-                <a href="https://x.com/Ambrosia_Fish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/twitter-icon.svg" alt="Twitter Link">
-                </a>
-                <a href="https://medium.com/@Brosefish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/medium-icon.svg" alt="Medium Link">
-                </a>
-                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer">
-                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link">
-                </a>
-                
             </div>
-        </footer> 
-    </body>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-light focus:outline-none">
+                   <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="hamburger-icon" class="icon-show" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="icon-hide" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                   </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
+                <a href="#home" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
+                <a href="#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
+                <a href="about.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">ABOUT ME</a>
+                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">CONTACT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="section pt-24 pb-8">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- This flex container will be reversed on mobile by CSS rules -->
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Text Content Area -->
+                <div class="md:w-1/2 mb-6 md:mb-0 text-center md:text-left">
+                    <h1 class="text-3xl md:text-5xl leading-tight mb-6 font-primary">HELLO WORLD!</h1>
+                    <p class="text-lg mb-4">
+                        My name is Josef Ameur and I'm a <span class="font-medium">full stack developer</span> from Rhode Island.
+                    </p>
+                    
+                    <!-- Social Icons - Centered on mobile -->
+                    <div class="flex space-x-6 mb-8 justify-center md:justify-start">
+                        <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
+                        </a>
+                        <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
+                        </a>
+                    </div>
+                    
+                    <!-- Button - Centered on mobile -->
+                    <div class="text-center md:text-left">
+                        <a href="#projects" class="btn-primary inline-block">VIEW MY PROJECTS</a>
+                    </div>
+                </div>
+                
+                <!-- Profile Image Area - Will appear first on mobile -->
+                <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0">
+                    <div class="w-full flex justify-center">
+                        <img src="img/josef-headshot.jpg" alt="Photo of Josef in front of the ocean in Rabat, Morocco. Sunny day." class="w-2/3 md:w-4/5 max-w-sm mx-auto rounded-full border-4 border-light">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-8 bg-dark">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl text-light mb-8 text-center font-primary">MY WORK</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Sci-Flix Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">SCI-FLIX</h3>
+                        <p class="text-light mb-4">
+                            A web application and API focused on sci-fi films. Users can browse, search, and interact with a collection of sci-fi movies.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>Angular</li>
+                                <li>React</li>
+                                <li>MongoDB</li>
+                                <li>Node.js</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://sci-flix.netlify.app/" target="_blank" class="btn-mini">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/sci-flix-client" target="_blank" class="btn-mini">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Meet App Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/meet-app-screenshot.png" alt="Meet App Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">MEET APP</h3>
+                        <p class="text-light mb-4">
+                            A responsive React application designed to help users discover and manage local events with features like city-based filtering and offline functionality.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>React</li>
+                                <li>PWA</li>
+                                <li>Data Viz</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://ambrosia-fish.github.io/meet-app/" target="_blank" class="btn-mini">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/meet-app" target="_blank" class="btn-mini">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pokedex App Project -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/bulbasaur.png" alt="Pokedex App Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">POKEDEX APP</h3>
+                        <p class="text-light mb-4">
+                            A simple Pokedex application that pulls data from PokeAPI to create a list of the first 150 pokemon with detailed stats.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>JavaScript</li>
+                                <li>Fetch API</li>
+                                <li>Polyfill</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://ambrosia-fish.github.io/dex-app/" target="_blank" class="btn-mini">Live Demo</a>
+                            <a href="https://github.com/ambrosia-fish/dex-app" target="_blank" class="btn-mini">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legacy Video Work -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <div class="w-full h-40 md:h-48 relative">
+                        <iframe src="https://player.vimeo.com/video/91722888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" class="absolute top-0 left-0 w-full h-full" title="Joe Aziz - Reel"></iframe>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">LEGACY VIDEO WORK</h3>
+                        <p class="text-light mb-4">
+                            Previous work as a videographer handling all aspects of production including camera operation, editing, sound, and more.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>Videography</li>
+                                <li>Editing</li>
+                                <li>Production</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://vimeo.com/91722888?share=copy" target="_blank" class="btn-mini">View Reel</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mothaga Game -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <div class="w-full h-40 md:h-48 bg-dark flex items-center justify-center">
+                        <h3 class="text-light text-2xl font-primary">MOTHAGA</h3>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">MOTHAGA</h3>
+                        <p class="text-light mb-4">
+                            An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>Godot</li>
+                                <li>GDScript</li>
+                                <li>Game Dev</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="btn-mini-disabled">Coming soon...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Website -->
+                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
+                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="w-full h-40 md:h-48 object-cover">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl text-light mb-2 font-primary">THIS PORTFOLIO</h3>
+                        <p class="text-light mb-4">
+                            My personal portfolio site built to showcase my projects and skills.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <ul class="skills-list w-full">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Tailwind</li>
+                                <li>Alpine.js</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="btn-mini">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-12 md:py-16 bg-mid text-light">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h2 class="text-2xl md:text-3xl mb-6 font-primary">LET'S WORK TOGETHER</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                I'm currently seeking new opportunities in full stack development. Feel free to reach out to discuss how my skills and experience can benefit your team.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center max-w-xs mx-auto md:max-w-md">
+                <a href="about.html" class="btn-outline">LEARN MORE ABOUT ME</a>
+                <a href="contact.html" class="btn-outline">CONTACT ME</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-6">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-center mb-4 font-primary">FIND ME ON:</h2>
+            <div class="flex justify-center gap-5 mb-4">
+                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="btn-icon">
+                    <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
+                </a>
+                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="btn-icon">
+                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
+                </a>
+            </div>
+            <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- COMPLETELY REWRITTEN menu functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get menu elements
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            // Make absolutely sure the menu starts hidden
+            console.log("Page loaded - ensuring menu is hidden");
+            
+            // Brute force menu toggle function
+            function toggleMenu() {
+                console.log("Toggle menu called");
+                if (mobileMenu.classList.contains('menu-show')) {
+                    // Menu is showing, so hide it
+                    mobileMenu.classList.remove('menu-show');
+                    hamburgerIcon.classList.remove('icon-hide');
+                    hamburgerIcon.classList.add('icon-show');
+                    closeIcon.classList.remove('icon-show');
+                    closeIcon.classList.add('icon-hide');
+                    console.log("Menu hidden");
+                } else {
+                    // Menu is hidden, so show it
+                    mobileMenu.classList.add('menu-show');
+                    hamburgerIcon.classList.remove('icon-show');
+                    hamburgerIcon.classList.add('icon-hide');
+                    closeIcon.classList.remove('icon-hide');
+                    closeIcon.classList.add('icon-show');
+                    console.log("Menu shown");
+                }
+            }
+            
+            // Add click event for menu button
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Menu button clicked");
+                toggleMenu();
+            });
+            
+            // Close menu when links are clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('menu-show')) {
+                        toggleMenu();
+                    }
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (mobileMenu.classList.contains('menu-show')) {
+                    const isClickInsideMenu = mobileMenu.contains(event.target);
+                    const isClickOnButton = mobileMenuButton.contains(event.target);
+                    
+                    if (!isClickInsideMenu && !isClickOnButton) {
+                        toggleMenu();
+                    }
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Scroll animation
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            
+            const elementInView = (el, scrollOffset = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            // Initialize scroll animations
+            handleScrollAnimation();
+            
+            // Add scroll event
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+        });
+    </script>
+</body>
 </html>
