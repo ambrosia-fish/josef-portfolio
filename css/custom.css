@@ -1,0 +1,14 @@
+/* Custom styles for Armatillo app screenshot */
+.armatillo-app {
+  max-width: 60% !important;
+  display: block;
+  margin: 0 auto;
+  border: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 767px) {
+  .armatillo-app {
+    max-width: 70% !important;
+  }
+}
