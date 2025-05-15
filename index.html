@@ -72,6 +72,13 @@
         #hamburger-icon.icon-show, #close-icon.icon-show {
             display: block !important;
         }
+        
+        /* Fix for vertical alignment of buttons */
+        .btn-outline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body class="font-body">
@@ -144,6 +151,9 @@
                         <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                         </a>
+                        <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/bsky-icon.svg" alt="Bluesky Link" class="w-6 h-6">
+                        </a>
                     </div>
                     
                     <!-- Button - Centered on mobile -->
@@ -167,7 +177,32 @@
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-2xl md:text-3xl text-light mb-8 text-center font-primary">MY WORK</h2>
             
-            <!-- New project layout with bigger screenshots -->
+            <!-- New project layout with bigger screenshots, in the requested order -->
+            
+            <!-- Armatillo App -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/armatillo-app-screenshot.png" alt="Armatillo App Screenshot" class="phone">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">ARMATILLO</h3>
+                    <p class="text-light mb-4">
+                        A React Native mobile app for tracking and reversing unwanted body-focused repetitive behaviors through habit reversal training.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>React Native</li>
+                            <li>Expo</li>
+                            <li>TypeScript</li>
+                            <li>REST API</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/ambrosia-fish/armatillo-app" target="_blank" class="btn-mini">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Sci-Flix Project -->
             <div class="project-row scroll-animate">
                 <div class="project-image">
@@ -189,30 +224,6 @@
                     <div class="flex flex-wrap gap-2">
                         <a href="https://sci-flix.netlify.app/" target="_blank" class="btn-mini">Live Demo</a>
                         <a href="https://github.com/ambrosia-fish/sci-flix-client" target="_blank" class="btn-mini">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- This Portfolio -->
-            <div class="project-row scroll-animate">
-                <div class="project-image">
-                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="widescreen">
-                </div>
-                <div class="project-details">
-                    <h3 class="text-xl text-light mb-4 font-primary">THIS PORTFOLIO</h3>
-                    <p class="text-light mb-4">
-                        My personal portfolio site built to showcase my projects and skills. Features a responsive design with smooth scrolling and animations.
-                    </p>
-                    <div class="flex flex-wrap mb-4">
-                        <ul class="skills-list w-full">
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Tailwind</li>
-                            <li>Alpine.js</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="btn-mini">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -241,6 +252,53 @@
                 </div>
             </div>
             
+            <!-- This Portfolio -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="widescreen">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">THIS PORTFOLIO</h3>
+                    <p class="text-light mb-4">
+                        My personal portfolio site built to showcase my projects and skills. Features a responsive design with smooth scrolling and animations.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Tailwind</li>
+                            <li>Alpine.js</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="btn-mini">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mothaga Game -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/mothaga-phone-screenshot.png" alt="Mothaga Game Screenshot" class="phone">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">MOTHAGA</h3>
+                    <p class="text-light mb-4">
+                        An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>Godot</li>
+                            <li>GDScript</li>
+                            <li>Game Dev</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="btn-mini-disabled">Coming soon...</span>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Legacy Video Work -->
             <div class="project-row scroll-animate">
                 <div class="project-image">
@@ -265,55 +323,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Armatillo App -->
-            <div class="project-row scroll-animate">
-                <div class="project-image">
-                    <img src="img/armatillo-app-screenshot.png" alt="Armatillo App Screenshot" class="phone">
-                </div>
-                <div class="project-details">
-                    <h3 class="text-xl text-light mb-4 font-primary">ARMATILLO</h3>
-                    <p class="text-light mb-4">
-                        A React Native mobile app for tracking and reversing unwanted body-focused repetitive behaviors through habit reversal training.
-                    </p>
-                    <div class="flex flex-wrap mb-4">
-                        <ul class="skills-list w-full">
-                            <li>React Native</li>
-                            <li>Expo</li>
-                            <li>TypeScript</li>
-                            <li>REST API</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://github.com/ambrosia-fish/armatillo-app" target="_blank" class="btn-mini">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mothaga Game -->
-            <div class="project-row scroll-animate">
-                <div class="project-image">
-                    <div class="w-full flex justify-center items-center h-72 md:h-80">
-                        <h3 class="phone text-light text-xl md:text-2xl font-primary bg-dark p-8 rounded-lg">MOTHAGA</h3>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h3 class="text-xl text-light mb-4 font-primary">MOTHAGA</h3>
-                    <p class="text-light mb-4">
-                        An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
-                    </p>
-                    <div class="flex flex-wrap mb-4">
-                        <ul class="skills-list w-full">
-                            <li>Godot</li>
-                            <li>GDScript</li>
-                            <li>Game Dev</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="btn-mini-disabled">Coming soon...</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -324,7 +333,7 @@
             <p class="text-lg mb-8 max-w-2xl mx-auto">
                 I'm currently seeking new opportunities in full stack development. Feel free to reach out to discuss how my skills and experience can benefit your team.
             </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center max-w-xs mx-auto md:max-w-md">
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xs mx-auto md:max-w-md">
                 <a href="about.html" class="btn-outline">LEARN MORE ABOUT ME</a>
                 <a href="contact.html" class="btn-outline">CONTACT ME</a>
             </div>
@@ -342,8 +351,15 @@
                 <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="btn-icon">
                     <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                 </a>
+                <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="btn-icon">
+                    <img src="img/bsky-icon.svg" alt="Bluesky Link" class="w-6 h-6">
+                </a>
+                <a href="#" class="btn-icon" title="Discord: ambrosia_fish">
+                    <img src="img/discord-icon.svg" alt="Discord: ambrosia_fish" class="w-6 h-6">
+                </a>
             </div>
-            <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
+            <p class="text-center mb-2">&copy; 2025 Josef Ameur. All rights reserved.</p>
+            <p class="text-center text-sm opacity-80">Discord: ambrosia_fish</p>
         </div>
     </footer>
 
