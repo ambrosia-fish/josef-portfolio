@@ -79,6 +79,16 @@
             align-items: center;
             justify-content: center;
         }
+        
+        /* Social icons styling */
+        .social-icon {
+            color: var(--light-color-primary);
+            transition: color 0.2s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--active-button);
+        }
     </style>
 </head>
 <body class="font-body">
@@ -144,7 +154,7 @@
                     </p>
                     
                     <!-- Social Icons - Centered on mobile -->
-                    <div class="flex space-x-6 mb-8 justify-center md:justify-start">
+                    <div class="flex mb-2 justify-center md:justify-start space-x-6">
                         <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                         </a>
@@ -152,9 +162,10 @@
                             <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                         </a>
                         <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
-                            <img src="img/bsky-icon.svg" alt="Bluesky Link" class="w-6 h-6">
+                            <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-6 h-6">
                         </a>
                     </div>
+                    <p class="text-center md:text-left text-sm mb-8 opacity-80">Discord: ambrosia_fish</p>
                     
                     <!-- Button - Centered on mobile -->
                     <div class="text-center md:text-left">
@@ -344,22 +355,20 @@
     <footer class="bg-dark text-light py-6">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-center mb-4 font-primary">FIND ME ON:</h2>
-            <div class="flex justify-center gap-5 mb-4">
-                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="btn-icon">
+            <!-- Social links without circles -->
+            <div class="flex justify-center gap-5 mb-2">
+                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                     <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                 </a>
-                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="btn-icon">
+                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                     <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                 </a>
-                <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="btn-icon">
-                    <img src="img/bsky-icon.svg" alt="Bluesky Link" class="w-6 h-6">
-                </a>
-                <a href="#" class="btn-icon" title="Discord: ambrosia_fish">
-                    <img src="img/discord-icon.svg" alt="Discord: ambrosia_fish" class="w-6 h-6">
+                <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                    <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-6 h-6">
                 </a>
             </div>
-            <p class="text-center mb-2">&copy; 2025 Josef Ameur. All rights reserved.</p>
-            <p class="text-center text-sm opacity-80">Discord: ambrosia_fish</p>
+            <p class="text-center text-sm opacity-80 mb-4">Discord: ambrosia_fish</p>
+            <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
         </div>
     </footer>
 
