@@ -12,8 +12,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts are included in the styles.css file through @import -->
-    
     <!-- Custom Tailwind config -->
     <script>
         tailwind.config = {
@@ -35,35 +33,8 @@
         }
     </script>
     
-    <!-- Combined styles -->
+    <!-- Consolidated styles -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Mobile menu fix CSS - crucial for consistent appearance -->
-    <link rel="stylesheet" href="css/mobile-menu-fix.css">
-    
-    <!-- Additional inline styles to force consistency -->
-    <style>
-        /* BRUTALLY FORCE MENU HIDDEN - This is the only safe approach at this point */
-        #mobile-menu {
-            display: none !important;
-            background-color: #25375c !important;
-        }
-        
-        /* Create a class that will be used by JS to show the menu when needed */
-        #mobile-menu.menu-show {
-            display: block !important;
-            background-color: #25375c !important;
-        }
-        
-        /* Controls icon visibility */
-        #hamburger-icon.icon-hide, #close-icon.icon-hide {
-            display: none !important;
-        }
-        
-        #hamburger-icon.icon-show, #close-icon.icon-show {
-            display: block !important;
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -330,41 +301,41 @@
                 
                // Submit to Web3Forms
                fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    },
-                    body: json
+                   method: "POST",
+                   headers: {
+                       "Content-Type": "application/json",
+                       Accept: "application/json"
+                   },
+                   body: json
                })
-                .then(async (response) => {
-                 let data = await response.json();
-                    
-                    if (response.status === 200) {
-                       // Show success message
-                        successMessage.classList.remove('hidden');
-                        form.reset();
-                    } else {
-                        // Show error message
-                        errorText.textContent = data.message || 'Something went wrong!';
-                        errorMessage.classList.remove('hidden');
-                    }
-                  
-                    // Reset button state
-                    submitButton.disabled = false;
-                    buttonText.classList.remove('hidden');
-                    buttonSending.classList.add('hidden');
-                })
-                .catch((error) => {
-                   // Show error message
-                   errorText.textContent = 'There was a network error. Please try again.';
-                   errorMessage.classList.remove('hidden');
+               .then(async (response) => {
+                let data = await response.json();
                    
-                    // Reset button state
-                    submitButton.disabled = false;
-                    buttonText.classList.remove('hidden');
-                    buttonSending.classList.add('hidden');
-                });
+                   if (response.status === 200) {
+                       // Show success message
+                       successMessage.classList.remove('hidden');
+                       form.reset();
+                   } else {
+                       // Show error message
+                       errorText.textContent = data.message || 'Something went wrong!';
+                       errorMessage.classList.remove('hidden');
+                   }
+               
+                   // Reset button state
+                   submitButton.disabled = false;
+                   buttonText.classList.remove('hidden');
+                   buttonSending.classList.add('hidden');
+               })
+               .catch((error) => {
+                  // Show error message
+                  errorText.textContent = 'There was a network error. Please try again.';
+                  errorMessage.classList.remove('hidden');
+                  
+                  // Reset button state
+                  submitButton.disabled = false;
+                  buttonText.classList.remove('hidden');
+                  buttonSending.classList.add('hidden');
+               });
             });
             
             // Scroll animation
