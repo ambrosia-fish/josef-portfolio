@@ -1,0 +1,32 @@
+/* Menu button position fix */
+#mobile-menu-button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+}
+
+/* Make sure the header has relative positioning to properly contain absolute positioned elements */
+header nav {
+  position: relative;
+}
+
+/* Adjust logo size on smaller screens */
+@media (max-width: 640px) {
+  .nav-logo span {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Fix mobile menu positioning */
+#mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
