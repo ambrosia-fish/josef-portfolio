@@ -1,143 +1,397 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Variables */
 :root {
   --dark-color-primary: #0b1424;
   --mid-color-primary: #25375c;
   --light-color-primary: #d7e0ea;
   --active-button: #af7479;
   --visited-link: #b89db8;
-  --font-primary: "Pixelify Sans", sans-serif;
-  --font-secondary: "Silkscreen", sans-serif;
+  --font-primary: "Silkscreen", sans-serif;
+  --font-body: "JetBrains Mono", monospace;
+}
+
+/* Global body font update */
+body {
+  font-family: var(--font-body);
+  color: var(--light-color-primary);
+  background-color: var(--dark-color-primary);
+  margin: 0;
+  padding: 0;
+  font-size: 16px; /* Slightly smaller for better readability with monospace */
+  font-weight: 400;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--dark-color-primary);
-  margin: 0;
-  padding: 0;
+/* Heading styles - ALL BOLD NOW */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
-  color: var(--light-color-primary);
-}
-
-.logo {
-  height: 50px;
-  width: 200px;
-}
-
-.page-header {
-  display: flex;
-  width: 100%;
-  padding: 20px;
-}
-
-.page-header_item:last-child {
-  flex-grow: 1;
-  text-align: right;
-}
-
-.navigation-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navigation-list li {
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.navigation-list__item--active {
-  text-decoration: none;
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Centered content for About and Contact pages */
-.about-page main,
-.contact-page main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.about-page .profile,
-.contact-page .contact {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Grid layout for Work page */
-.grid {
-  column-count: 3;
-  column-gap: 20px;
-  padding: 20px;
-}
-
-.grid_item {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 20px;
-  break-inside: avoid;
-  background-color: var(--mid-color-primary);
-  border: 2px solid var(--light-color-primary);
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.grid_item h2 {
-  margin-top: 0;
-  font-size: 1.5em;
-}
-
-.grid_item p {
-  margin-bottom: 15px;
-}
-
-.grid_item img,
-.grid_item video {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-.profile {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.profile_portrait {
-  float: none;
-  width: 250px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  display: block;
+  font-weight: 700; /* Bold for ALL headings */
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
 }
 
 h1 {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--light-color-primary);
+  font-size: 18px;
 }
 
 h2 {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 2rem;
 }
 
-p {
+h3 {
+  font-size: 1.75rem;
+}
+
+/* Text elements */
+p, li, input, textarea, .status-badge {
+  font-family: var(--font-body);
   line-height: 1.6;
+  margin-bottom: 1em;
 }
 
+/* UI elements - ALL BOLD NOW */
+button, .button, .skill-bubble, .nav-item, a {
+  font-family: var(--font-primary);
+  font-weight: 700; /* Bold for UI elements */
+}
+
+/* Force consistent styling for Silkscreen elements */
+.font-primary,
+[class*="heading"],
+.nav-item,
+.button,
+.skill-bubble,
+.section-title,
+.card-title {
+  font-family: var(--font-primary) !important;
+  font-weight: 700 !important;
+}
+
+/* Reduce spacing between sections */
+.section {
+  min-height: 60vh; /* Reduced from 70vh */
+  padding: 2rem 0; /* Reduced from 3rem */
+  display: flex;
+  align-items: center;
+}
+
+/* Specific adjustment for projects section */
+#projects {
+  padding-top: 4rem; /* Reduced from original padding */
+  margin-top: -2rem; /* Negative margin to pull it up */
+}
+
+/* Fix MY WORK heading */
+#projects h2 {
+  margin-bottom: 1.5rem; /* Reduced from 2rem or more */
+}
+
+/* Header alignment fix */
+header nav {
+  height: 70px; /* Fixed height for header */
+  display: flex;
+  align-items: center;
+}
+
+header .nav-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+header .nav-logo span, 
+header .nav-logo img {
+  max-height: 50px; /* Consistent height for logo elements */
+}
+
+header .nav-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header .nav-links ul {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header .nav-links li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+header .nav-links a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+/* Mobile navigation fixes to make hidden actually work */
+@media (max-width: 900px) {
+  /* Force hidden style for mobile navigation to take precedence */
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  /* Force mobile button to display */
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  /* Make menu work properly on mobile */
+  header div[x-show="mobileMnuOpen"] {
+    display: none;
+  }
+  
+  header div[x-show="mobileMnuOpen"][style*="display: block"] {
+    display: block !important;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  
+  /* Fix for Alpine.js elements showing on page load */
+  [x-cloak] {
+    display: none !important;
+  }
+  
+  /* Improved spacing for menu items */
+  header div[x-show="mobileMnuOpen"] a {
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+  }
+  
+  /* Better toggle button spacing */
+  header button {
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+  
+  header .nav-logo span {
+    font-size: 1.5rem !important;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  body {
+    font-size: 15px;
+  }
+  
+  /* Better button sizing on mobile */
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Mobile Hero Section Structure - Reversed */
+@media (max-width: 767px) {
+  #home .flex.flex-col.md\:flex-row {
+    flex-direction: column-reverse !important;
+  }
+  
+  #home img.rounded-full {
+    margin: 0 auto 2rem auto;
+    max-width: 65% !important;
+  }
+  
+  #home h1, #home p, #home .flex.space-x-6, #home a.btn-primary {
+    text-align: center;
+  }
+  
+  #home .flex.space-x-6 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #home a.btn-primary {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+  }
+  
+  /* Hero section adjustments for mobile */
+  #home .container > div {
+    gap: 1rem;
+  }
+  
+  /* Project cards for mobile */
+  .project-card {
+    margin-bottom: 2rem;
+  }
+  
+  .project-card h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Compact section for contact */
+.section-compact {
+  min-height: auto;
+  padding: 1.5rem 0;
+}
+
+/* Scroll animation */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Project card hover effects */
+.project-card {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Skills list style */
+.skills-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-list li {
+  font-family: var(--font-body);
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Button Styles - Consistency */
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  background-color: #25375c;
+  color: var(--light-color-primary);
+  border: 2px solid var(--light-color-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-outline {
+  display: inline-block;
+  width: 100%;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  background-color: #0b1424;
+  color: var(--light-color-primary);
+  border: 2px solid var(--light-color-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-mini {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  background-color: #0b1424;
+  color: var(--light-color-primary);
+  border: 1px solid var(--light-color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-mini:hover {
+  background-color: var(--light-color-primary);
+  color: var(--dark-color-primary);
+}
+
+.btn-mini-disabled {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  background-color: transparent;
+  color: var(--mid-color-primary);
+  border: 1px solid var(--mid-color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid var(--light-color-primary);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Link styles */
 a {
   color: var(--light-color-primary);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:visited {
@@ -154,73 +408,123 @@ a:active {
   color: var(--light-color-primary);
 }
 
-button,
-.button {
-  font-family: var(--font-primary);
+/* Form styles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
   background-color: var(--mid-color-primary);
   color: var(--light-color-primary);
-  border: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 3px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition: opacity 0.2s;
+  border: 2px solid var(--light-color-primary);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-button:hover,
-button:focus,
-.button:hover,
-.button:focus {
-  cursor: pointer;
-  opacity: 0.8;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  border-color: var(--active-button);
+  box-shadow: 0 0 0 3px rgba(175, 116, 121, 0.2);
 }
 
-button:active,
-.button:active {
-  background-color: var(--active-button);
-  color: var(--dark-color-primary);
-}
-
-.page_footer {
-  clear: both;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-media img {
-  width: 30px;
-  height: 30px;
-}
-
-@media all and (max-width: 750px) {
-  .grid {
-    column-count: 2;
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
   }
-
-  h1 {
-    font-size: 22px;
+  
+  .section-title {
+    font-size: 1.5rem;
   }
-
-  .page-header {
-    flex-direction: column;
-    align-items: center;
+  
+  .btn-mini {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
   }
-
-  .page-header_item:last-child {
-    margin-top: 10px;
-    text-align: center;
+  
+  /* Social icons in footer */
+  footer .flex.justify-center img {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  /* Improve skill bubbles readability */
+  .skills-list li {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  /* Fix contact form padding */
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+  
+  /* Better spacing for project cards */
+  .project-card .p-6 {
+    padding: 1rem !important;
+  }
+  
+  /* Smaller project card images */
+  .project-card img.h-48 {
+    height: 10rem !important;
+  }
+  
+  /* Adjust hero section for smallest screens */
+  #home h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  #home .text-lg {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Timeline items spacing on mobile */
+  .timeline-item {
+    margin-bottom: 2rem;
+  }
+  
+  /* Contact form improvements for mobile */
+  label {
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    padding: 0.6rem;
+  }
+  
+  .space-y-4 > * {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Call to action section on mobile */
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Better button spacing on mobile */
+  .flex.flex-col.gap-4 {
+    gap: 0.5rem !important;
   }
 }
 
-@media all and (max-width: 500px) {
-  .grid {
-    column-count: 1;
-  }
+/* Add this to debug font issues if needed */
+.silkscreen-debug::after {
+  content: "Silkscreen applied";
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(255,0,0,0.5);
+  color: white;
+  padding: 5px;
+  z-index: 9999;
+  font-family: var(--font-body);
 }

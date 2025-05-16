@@ -1,78 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Contact Josef Ameur</title>
-        <link rel="shortcut icon" href="img/josef-favicon.png">
-        <link rel="stylesheet" href="css/styles.production.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-    </head>
-    <body class="contact-page">
-        <header class="page-header">
-            <img src="img/name-logo.png" class="page-header_item logo" alt="Josef's personal logo, his first and last name written in the style of pixel art.">
-            <nav class="page-header_item">
-                <ul role="menubar" class="navigation-list">
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Josef Ameur</title>
+    <link rel="shortcut icon" href="img/josef-favicon.png">
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.12.3/dist/cdn.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts are included in the styles.css file through @import -->
+    
+    <!-- Custom Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0b1424',       // --dark-color-primary
+                        mid: '#25375c',        // --mid-color-primary
+                        light: '#d7e0ea',      // --light-color-primary
+                        button: '#af7479',     // --active-button
+                        link: '#b89db8'        // --visited-link
+                    },
+                    fontFamily: {
+                        primary: ['Silkscreen', 'sans-serif'],
+                        body: ['"JetBrains Mono"', 'monospace']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Combined styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Mobile menu fix CSS - crucial for consistent appearance -->
+    <link rel="stylesheet" href="css/mobile-menu-fix.css">
+    
+    <!-- Additional inline styles to force consistency -->
+    <style>
+        /* BRUTALLY FORCE MENU HIDDEN - This is the only safe approach at this point */
+        #mobile-menu {
+            display: none !important;
+            background-color: #25375c !important;
+        }
+        
+        /* Create a class that will be used by JS to show the menu when needed */
+        #mobile-menu.menu-show {
+            display: block !important;
+            background-color: #25375c !important;
+        }
+        
+        /* Controls icon visibility */
+        #hamburger-icon.icon-hide, #close-icon.icon-hide {
+            display: none !important;
+        }
+        
+        #hamburger-icon.icon-show, #close-icon.icon-show {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="fixed w-full bg-mid text-light bg-opacity-95 shadow-sm z-50">
+        <nav class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center nav-logo">
+                <a href="index.html" class="flex items-center">
+                    <span class="text-xl md:text-3xl font-primary tracking-wider text-light">JOSEF AMEUR</span>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex nav-links">
+                <ul role="menubar" class="flex items-center space-x-6 md:space-x-10 font-primary">
                     <li role="presentation">
-                        <a href="index.html" role="menuitem" class="navigation-list_item">Home</a>
+                        <a href="index.html" role="menuitem" class="text-light hover:text-button">HOME</a>
                     </li>
                     <li role="presentation">
-                        <a href="about.html" role="menuitem" class="navigation-list_item">About Me</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="work.html" role="menuitem" class="navigation-list_item">Work</a>
-                    </li>
-                    <li role="presentation">   
-                        <a href="contact.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Contact</a>
+                        <a href="index.html#projects" role="menuitem" class="text-light hover:text-button">PROJECTS</a>
                     </li>
                     <li role="presentation">
-                        <a href="case-study.html" role="menuitem" class="navigation-list_item navigation-list__item--active">Case Study</a>
+                        <a href="about.html" role="menuitem" class="text-light hover:text-button">ABOUT ME</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="contact.html" role="menuitem" class="text-light hover:text-button font-bold">CONTACT</a>
                     </li>
                 </ul>
-            </nav>
-        </header>
-        <main>
-            <section class="contact">
-                <h1>My Contact Details:</h1>
-                <p class="p-center">
-                    Telephone: <a href="tel:+15086884205" aria-label="five zero eight six eight eight four two zero five">(508) 688 4205</a><br>
-                    Email: <a href="mailto:josefameur@gmail.com">josefameur (at) gmail (dot) com</a><br>
-                </p>
-                <h2>Shoot me a message:</h2>
-                <form action="message" method="post" id="contact-form">
-                    <label class="standard-label" for="contact-email">Your E-mail:<br></label>
-                    <input type="email" id="contact-email" required>*<br>
-
-                    <label class="standard-label" for="contact-phone">Your Phone:<br></label>
-                    <input type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" id="contact-phone" required>*<br>
-
-                    <label class="standard-label" for="message-text">Your Message:<br></label>
-                    <textarea maxlength="420" id="message-text" required></textarea>*<br><br>
-
-                    <input type="submit" value="Send Message" class="button">
-                </form>
-            </section>
-        </main>
-        <footer class="page_footer">
-            <h2>Find me on:</h2>
-            <div class="social-media">
-                <!--add social links-->
-                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer">
-                    <img src="img/github-icon.svg" alt="Github Link">
-                </a>
-                <a href="https://x.com/Ambrosia_Fish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/twitter-icon.svg" alt="Twitter Link">
-                </a>
-                <a href="https://medium.com/@Brosefish" target="_blank" rel="noopener noreferrer">
-                    <img src="img/medium-icon.svg" alt="Medium Link">
-                </a>
-                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer">
-                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link">
-                </a>
-                
             </div>
-        </footer> 
-    </body>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-light focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="hamburger-icon" class="icon-show" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="icon-hide" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu - Match structure with index.html exactly -->
+        <div id="mobile-menu" class="md:hidden bg-mid">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
+                <a href="index.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
+                <a href="index.html#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
+                <a href="about.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">ABOUT ME</a>
+                <a href="contact.html" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md font-bold mobile-link">CONTACT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="pt-24 bg-dark">
+        <div class="container mx-auto px-4 md:px-6 py-8 md:py-16">
+            <div class="max-w-lg mx-auto scroll-animate">
+                <h1 class="text-3xl md:text-4xl font-bold text-light mb-6 text-center font-primary">CONTACT ME</h1>
+            
+                <div class="bg-mid rounded-lg shadow-md p-4 md:p-8 mb-10 border-2 border-light">
+                    <h2 class="text-xl md:text-2xl font-bold text-light mb-4 font-primary">SEND ME A MESSAGE</h2>
+                    
+                    <!-- Success message -->
+                    <div id="success-message" class="bg-green-800 border border-green-600 text-light px-4 py-3 rounded mb-4 hidden">
+                        <p>Thank you for your message! I'll get back to you soon.</p>
+                    </div>
+                    
+                    <!-- Error message -->
+                    <div id="error-message" class="bg-red-800 border border-red-600 text-light px-4 py-3 rounded mb-4 hidden">
+                        <p id="error-text">There was an error sending your message. Please try again.</p>
+                    </div>
+                    
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="4754fa88-b05e-4e97-b0ac-88d33a20382a">
+                        
+                        <!-- Optional: Subject -->
+                        <input type="hidden" name="subject" value="New Contact Form Submission - Portfolio">
+                        
+                        <!-- Optional: From Name -->
+                        <input type="hidden" name="from_name" value="Josef's Portfolio Contact Form">
+                        
+                        <!-- Optional: Redirect URL -->
+                        <input type="hidden" name="redirect" value="false">
+                        
+                        <!-- Honeypot field to prevent spam -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
+                        <div>
+                            <label for="name" class="block text-light text-sm font-bold mb-2">Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="w-full"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-light text-sm font-bold mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="w-full"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-light text-sm font-bold mb-2">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5" 
+                                class="w-full resize-none"
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                            <button 
+                                type="submit" 
+                                id="submit-button"
+                                class="bg-mid text-light border-2 border-light px-6 md:px-8 py-3 rounded-md font-medium hover:bg-button transition duration-200"
+                            >
+                                <span id="button-text">Send Message</span>
+                                <span id="button-sending" class="hidden">Sending...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-light mb-4">You can also find me on these platforms:</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/github-icon.svg" alt="Github Link" class="w-8 h-8">
+                        </a>
+                        <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-8 h-8">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-6 border-t border-mid">
+        <div class="container mx-auto px-4 md:px-6">
+            <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile menu and form submission script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get menu elements
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            // IMPORTANT: Ensure proper initial state by explicitly setting classes
+            hamburgerIcon.classList.add('icon-show');
+            hamburgerIcon.classList.remove('icon-hide');
+            closeIcon.classList.add('icon-hide');
+            closeIcon.classList.remove('icon-show');
+            
+            // Brute force menu toggle function
+            function toggleMenu() {
+                console.log("Toggle menu called");
+                if (mobileMenu.classList.contains('menu-show')) {
+                    // Menu is showing, so hide it
+                    mobileMenu.classList.remove('menu-show');
+                    hamburgerIcon.classList.remove('icon-hide');
+                    hamburgerIcon.classList.add('icon-show');
+                    closeIcon.classList.remove('icon-show');
+                    closeIcon.classList.add('icon-hide');
+                    console.log("Menu hidden");
+                } else {
+                    // Menu is hidden, so show it
+                    mobileMenu.classList.add('menu-show');
+                    hamburgerIcon.classList.remove('icon-show');
+                    hamburgerIcon.classList.add('icon-hide');
+                    closeIcon.classList.remove('icon-hide');
+                    closeIcon.classList.add('icon-show');
+                    console.log("Menu shown");
+                }
+            }
+            
+            // Add click event for menu button
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Menu button clicked");
+                toggleMenu();
+            });
+            
+            // Close menu when links are clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('menu-show')) {
+                        toggleMenu();
+                    }
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (mobileMenu.classList.contains('menu-show')) {
+                    const isClickInsideMenu = mobileMenu.contains(event.target);
+                    const isClickOnButton = mobileMenuButton.contains(event.target);
+                    
+                    if (!isClickInsideMenu && !isClickOnButton) {
+                        toggleMenu();
+                    }
+                }
+            });
+            
+            // Form submission handling
+            const form = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submit-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonSending = document.getElementById('button-sending');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show sending state
+                submitButton.disabled = true;
+                buttonText.classList.add('hidden');
+                buttonSending.classList.remove('hidden');
+                
+                // Hide any existing messages
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+                
+                // Collect form data
+                const formData = new FormData(form);
+               const object = Object.fromEntries(formData);
+               const json = JSON.stringify(object);
+                
+               // Submit to Web3Forms
+               fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: json
+               })
+               .then(async (response) => {
+                  let data = await response.json();
+                    
+                    if (response.status === 200) {
+                       // Show success message
+                        successMessage.classList.remove('hidden');
+                        form.reset();
+                    } else {
+                        // Show error message
+                        errorText.textContent = data.message || 'Something went wrong!';
+                        errorMessage.classList.remove('hidden');
+                    }
+                  
+                    // Reset button state
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSending.classList.add('hidden');
+                })
+                .catch((error) => {
+                   // Show error message
+                   errorText.textContent = 'There was a network error. Please try again.';
+                   errorMessage.classList.remove('hidden');
+                   
+                    // Reset button state
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    buttonSending.classList.add('hidden');
+                });
+            });
+            
+            // Scroll animation
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            
+            const elementInView = (el, scrollOffset = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+            
+            // Initialize
+            setTimeout(handleScrollAnimation, 100);
+        });
+    </script>
+</body>
 </html>
