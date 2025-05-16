@@ -325,7 +325,7 @@
         </div>
     </footer>
 
-    <!-- Mobile menu script - Improved for touch devices -->
+    <!-- Mobile menu script - Fixed for external page navigation -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu elements
@@ -381,16 +381,65 @@
             
             // Handle link clicks with touch support
             mobileLinks.forEach(link => {
-                // Close menu when link is clicked/tapped
-                function handleLinkActivation(e) {
+                link.addEventListener('click', function(e) {
+                    // Close the menu
                     if (mobileMenu.classList.contains('menu-show')) {
-                        // Don't prevent default here to allow navigation
                         toggleMenu();
                     }
-                }
+                    
+                    // For links going to same page, help with smooth scrolling
+                    const href = this.getAttribute('href');
+                    
+                    // Only handle anchor links on the same page
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = href;
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            const headerOffset = 70; // Header height
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    // For external links, allow default navigation
+                });
                 
-                link.addEventListener('click', handleLinkActivation);
-                link.addEventListener('touchend', handleLinkActivation, { passive: true });
+                // Add touch support
+                link.addEventListener('touchend', function(e) {
+                    if (mobileMenu.classList.contains('menu-show')) {
+                        toggleMenu();
+                    }
+                    
+                    // For external page links (not starting with #), let the default navigation happen
+                    const href = this.getAttribute('href');
+                    if (!href.startsWith('#')) {
+                        return; // Let the default navigation happen
+                    }
+                    
+                    // For anchor links, handle smooth scrolling
+                    e.preventDefault();
+                    
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 70; // Header height
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, { passive: false });
             });
             
             // Close menu when clicking outside
@@ -405,7 +454,7 @@
                 }
             });
             
-            // Smooth scrolling for anchor links
+            // Smooth scrolling for desktop anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
