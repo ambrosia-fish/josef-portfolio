@@ -99,6 +99,7 @@ header nav {
   height: 70px; /* Fixed height for header */
   display: flex;
   align-items: center;
+  position: relative; /* Required for absolute positioning of mobile menu button */
 }
 
 header .nav-logo {
@@ -138,6 +139,79 @@ header .nav-links a {
   padding: 0 10px;
 }
 
+/* Menu button position fix */
+#mobile-menu-button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+}
+
+/* Custom mobile menu styles */
+#mobile-menu {
+  /* Must be initially hidden */
+  display: none;
+  background-color: #25375c !important; /* Force the mid color */
+  z-index: 40;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Force consistent background color on all pages */
+#mobile-menu div {
+  background-color: #25375c !important;
+}
+
+/* Reset any Alpine.js related styles */
+[x-cloak], 
+[x-show], 
+[x-data] {
+  display: initial;
+}
+
+/* Ensure mobile menu toggle works correctly */
+#mobile-menu.active,
+#mobile-menu.menu-show {
+  display: block !important;
+}
+
+/* Force correct display of hamburger/close icons */
+#hamburger-icon.hidden,
+#close-icon.hidden,
+#hamburger-icon.icon-hide,
+#close-icon.icon-hide {
+  display: none !important;
+}
+
+#hamburger-icon:not(.hidden),
+#close-icon:not(.hidden),
+#hamburger-icon.icon-show,
+#close-icon.icon-show {
+  display: block !important;
+}
+
+/* Make mobile menu links consistent across all pages */
+#mobile-menu a.mobile-link {
+  display: block !important;
+  padding: 0.5rem 0.75rem !important;
+  margin: 0.25rem 0 !important;
+  color: #d7e0ea !important; /* --light-color-primary */
+  border-radius: 0.375rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Fix hover effects to be consistent */
+#mobile-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #d7e0ea !important; /* --light-color-primary */
+}
+
 /* Mobile navigation fixes to make hidden actually work */
 @media (max-width: 900px) {
   /* Force hidden style for mobile navigation to take precedence */
@@ -172,14 +246,9 @@ header .nav-links a {
     margin: 0.25rem 0;
   }
   
-  /* Better toggle button spacing */
-  header button {
-    padding: 0.5rem;
-    margin-left: auto;
-  }
-  
+  /* Adjust logo size on smaller screens */
   header .nav-logo span {
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
   }
   
   h1 {
