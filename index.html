@@ -39,6 +39,9 @@
     <!-- Combined styles -->
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/custom.css">
+    
     <!-- Additional inline styles to force consistency -->
     <style>
         /* Force Silkscreen bold on all necessary elements */
@@ -71,6 +74,23 @@
         
         #hamburger-icon.icon-show, #close-icon.icon-show {
             display: block !important;
+        }
+        
+        /* Fix for vertical alignment of buttons */
+        .btn-outline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Social icons styling */
+        .social-icon {
+            color: var(--light-color-primary);
+            transition: color 0.2s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--active-button);
         }
     </style>
 </head>
@@ -105,10 +125,10 @@
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-light focus:outline-none">
-                   <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="hamburger-icon" class="icon-show" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         <path id="close-icon" class="icon-hide" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                   </svg>
+                    </svg>
                 </button>
             </div>
         </nav>
@@ -133,18 +153,22 @@
                 <div class="md:w-1/2 mb-6 md:mb-0 text-center md:text-left">
                     <h1 class="text-3xl md:text-5xl leading-tight mb-6 font-primary">HELLO WORLD!</h1>
                     <p class="text-lg mb-4">
-                        My name is Josef Ameur and I'm a <span class="font-medium">full stack developer</span> from Rhode Island.
+                        I'm Josef Ameur, a <span class="font-medium">full stack developer</span> from Rhode Island. Welcome to my corner of the internet.
                     </p>
                     
                     <!-- Social Icons - Centered on mobile -->
-                    <div class="flex space-x-6 mb-8 justify-center md:justify-start">
+                    <div class="flex mb-2 justify-center md:justify-start space-x-6">
                         <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                         </a>
                         <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                         </a>
+                        <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-6 h-6">
+                        </a>
                     </div>
+                    <p class="text-center md:text-left text-sm mb-8 opacity-80">Discord: ambrosia_fish</p>
                     
                     <!-- Button - Centered on mobile -->
                     <div class="text-center md:text-left">
@@ -167,139 +191,157 @@
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-2xl md:text-3xl text-light mb-8 text-center font-primary">MY WORK</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Sci-Flix Project -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="w-full h-40 md:h-48 object-cover">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">SCI-FLIX</h3>
-                        <p class="text-light mb-4">
-                            A web application and API focused on sci-fi films. Users can browse, search, and interact with a collection of sci-fi movies.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>Angular</li>
-                                <li>React</li>
-                                <li>MongoDB</li>
-                                <li>Node.js</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://sci-flix.netlify.app/" target="_blank" class="btn-mini">Live Demo</a>
-                            <a href="https://github.com/ambrosia-fish/sci-flix-client" target="_blank" class="btn-mini">GitHub</a>
-                        </div>
+            <!-- New project layout with bigger screenshots, in the requested order -->
+            
+            <!-- Armatillo App -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/armatillo-app-screenshot.png" alt="Armatillo App Screenshot" class="armatillo-app">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">ARMATILLO</h3>
+                    <p class="text-light mb-4">
+                        A React Native mobile app for tracking and reversing body-focused repetitive behaviors with Dill, the encouraging armadillo, to support you along the way. Currently under development.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>React Native</li>
+                            <li>Expo</li>
+                            <li>TypeScript</li>
+                            <li>REST API</li>
+                            <li>Node.js</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://www.armatillo.com" target="_blank" class="btn-mini">armatillo.com</a>
+                        <a href="https://github.com/ambrosia-fish/armatillo-app" target="_blank" class="btn-mini">Frontend Repository</a>
+                        <a href="https://github.com/ambrosia-fish/armatillo-api" target="_blank" class="btn-mini">Backend Repository</a>
                     </div>
                 </div>
-                
-                <!-- Meet App Project -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/meet-app-screenshot.png" alt="Meet App Screenshot" class="w-full h-40 md:h-48 object-cover">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">MEET APP</h3>
-                        <p class="text-light mb-4">
-                            A responsive React application designed to help users discover and manage local events with features like city-based filtering and offline functionality.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>React</li>
-                                <li>PWA</li>
-                                <li>Data Viz</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://ambrosia-fish.github.io/meet-app/" target="_blank" class="btn-mini">Live Demo</a>
-                            <a href="https://github.com/ambrosia-fish/meet-app" target="_blank" class="btn-mini">GitHub</a>
-                        </div>
+            </div>
+            
+            <!-- Sci-Flix Project -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/sci-flix-screenshot.png" alt="Sci-Flix Screenshot" class="widescreen">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">SCI-FLIX</h3>
+                    <p class="text-light mb-4">
+                        A web application and API focused on sci-fi films. Users can browse, search, and interact with a collection of sci-fi movies. I built the frontend in React and Angular to build expertise with both frameworks.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>Angular</li>
+                            <li>React</li>
+                            <li>MongoDB</li>
+                            <li>Node.js</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://sciflix.feztech.io/" target="_blank" class="btn-mini">React Frontend</a>
+                        <a href="https://github.com/ambrosia-fish/sci-flix-client" target="_blank" class="btn-mini">React Frontend Repository</a>
+                        <a href="https://github.com/ambrosia-fish/sciflix-angular-client" target="_blank" class="btn-mini">Angular Frontend Repository</a>
+                        <a href="https://github.com/ambrosia-fish/sci-flix" target="_blank" class="btn-mini">Backend Repository</a>
                     </div>
                 </div>
-                
-                <!-- Pokedex App Project -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/bulbasaur.png" alt="Pokedex App Screenshot" class="w-full h-40 md:h-48 object-cover">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">POKEDEX APP</h3>
-                        <p class="text-light mb-4">
-                            A simple Pokedex application that pulls data from PokeAPI to create a list of the first 150 pokemon with detailed stats.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>JavaScript</li>
-                                <li>Fetch API</li>
-                                <li>Polyfill</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://ambrosia-fish.github.io/dex-app/" target="_blank" class="btn-mini">Live Demo</a>
-                            <a href="https://github.com/ambrosia-fish/dex-app" target="_blank" class="btn-mini">GitHub</a>
-                        </div>
+            </div>
+            
+            <!-- Gamila (Recipe App) -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/gamila-app-screenshot.jpg" alt="Gamila Recipe App Screenshot" class="widescreen">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">GAMILA</h3>
+                    <p class="text-light mb-4">
+                        A Django-based recipe application for discovering, saving, and analyzing recipes. Features advanced search capabilities and data visualizations. Specializing in Moroccan recipes, some of which are directly from my grandmother!
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>Django</li>
+                            <li>Python</li>
+                            <li>SQLite3</li>
+                            <li>Matplotlib</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="http://gamila.feztech.io/" target="_blank" class="btn-mini">Django App</a>
+                        <a href="https://github.com/ambrosia-fish/recipe-app" target="_blank" class="btn-mini">Django Repository</a>
                     </div>
                 </div>
-                
-                <!-- Legacy Video Work -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <div class="w-full h-40 md:h-48 relative">
-                        <iframe src="https://player.vimeo.com/video/91722888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" class="absolute top-0 left-0 w-full h-full" title="Joe Aziz - Reel"></iframe>
+            </div>
+            
+            <!-- This Portfolio -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="widescreen">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">THIS PORTFOLIO</h3>
+                    <p class="text-light mb-4">
+                        My personal portfolio site built to showcase my projects and skills. Features a responsive design with smooth scrolling and animations. Whoa meta...
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Tailwind</li>
+                            <li>Alpine.js</li>
+                        </ul>
                     </div>
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">LEGACY VIDEO WORK</h3>
-                        <p class="text-light mb-4">
-                            Previous work as a videographer handling all aspects of production including camera operation, editing, sound, and more.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>Videography</li>
-                                <li>Editing</li>
-                                <li>Production</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://vimeo.com/91722888?share=copy" target="_blank" class="btn-mini">View Reel</a>
-                        </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="btn-mini">Portfolio Repository</a>
                     </div>
                 </div>
-                
-                <!-- Mothaga Game -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <div class="w-full h-40 md:h-48 bg-dark flex items-center justify-center">
-                        <h3 class="text-light text-2xl font-primary">MOTHAGA</h3>
+            </div>
+            
+            <!-- Mothaga Game -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <img src="img/mothaga.GIF" alt="Mothaga Game Screenshot" class="phone">
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">MOTHAGA</h3>
+                    <p class="text-light mb-4">
+                        An early 80's retroshooter inspired by Galaga and my greatest fear...EVIL SPACE MOTHS FROM ANOTHER DIMENSION. 
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>Godot</li>
+                            <li>GDScript</li>
+                            <li>Game Dev</li>
+                        </ul>
                     </div>
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">MOTHAGA</h3>
-                        <p class="text-light mb-4">
-                            An early 80's retroshooter inspired by Galaga and my greatest fear... EVIL SPACE MOTHS FROM ANOTHER DIMENSION.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>Godot</li>
-                                <li>GDScript</li>
-                                <li>Game Dev</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="btn-mini-disabled">Coming soon...</span>
-                        </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="btn-mini-disabled">Coming soon...</span>
                     </div>
                 </div>
-                
-                <!-- Portfolio Website -->
-                <div class="project-card bg-mid rounded-lg shadow-md overflow-hidden scroll-animate border-2 border-light">
-                    <img src="img/portfolio.png" alt="Portfolio Website Screenshot" class="w-full h-40 md:h-48 object-cover">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-xl text-light mb-2 font-primary">THIS PORTFOLIO</h3>
-                        <p class="text-light mb-4">
-                            My personal portfolio site built to showcase my projects and skills.
-                        </p>
-                        <div class="flex flex-wrap mb-4">
-                            <ul class="skills-list w-full">
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>Tailwind</li>
-                                <li>Alpine.js</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://github.com/ambrosia-fish/josef-portfolio" target="_blank" class="btn-mini">GitHub</a>
-                        </div>
+            </div>
+            
+            <!-- Legacy Video Work -->
+            <div class="project-row scroll-animate">
+                <div class="project-image">
+                    <div class="w-full h-72 md:h-80 relative">
+                        <iframe title="vimeo-player" src="https://player.vimeo.com/video/917228888?h=38e12ee6b4" width="640" height="360" frameborder="0"    allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3 class="text-xl text-light mb-4 font-primary">LEGACY VIDEO WORK</h3>
+                    <p class="text-light mb-4">
+                        Previous work as a videographer handling all aspects of production including camera operation, editing, sound, and more.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <ul class="skills-list w-full">
+                            <li>Videography</li>
+                            <li>Editing</li>
+                            <li>Production</li>
+                            <li>Directing</li>
+                            <li>Sound</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://vimeo.com/91722888?share=copy" target="_blank" class="btn-mini">View Reel</a>
                     </div>
                 </div>
             </div>
@@ -313,7 +355,7 @@
             <p class="text-lg mb-8 max-w-2xl mx-auto">
                 I'm currently seeking new opportunities in full stack development. Feel free to reach out to discuss how my skills and experience can benefit your team.
             </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center max-w-xs mx-auto md:max-w-md">
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xs mx-auto md:max-w-md">
                 <a href="about.html" class="btn-outline">LEARN MORE ABOUT ME</a>
                 <a href="contact.html" class="btn-outline">CONTACT ME</a>
             </div>
@@ -324,14 +366,19 @@
     <footer class="bg-dark text-light py-6">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-center mb-4 font-primary">FIND ME ON:</h2>
-            <div class="flex justify-center gap-5 mb-4">
-                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="btn-icon">
+            <!-- Social links without circles -->
+            <div class="flex justify-center gap-5 mb-2">
+                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                     <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
                 </a>
-                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="btn-icon">
+                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                     <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
                 </a>
+                <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                    <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-6 h-6">
+                </a>
             </div>
+            <p class="text-center text-sm opacity-80 mb-4">Discord: ambrosia_fish</p>
             <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
         </div>
     </footer>

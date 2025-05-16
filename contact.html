@@ -205,6 +205,9 @@
                         <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
                             <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-8 h-8">
                         </a>
+                        <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                            <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-8 h-8">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -212,8 +215,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-6 border-t border-mid">
+    <footer class="bg-dark text-light py-6">
         <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-center mb-4 font-primary">FIND ME ON:</h2>
+            <!-- Social links without circles -->
+            <div class="flex justify-center gap-5 mb-2">
+                <a href="https://github.com/ambrosia-fish/" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                    <img src="img/github-icon.svg" alt="Github Link" class="w-6 h-6">
+                </a>
+                <a href="https://www.linkedin.com/in/josefameur" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                    <img src="img/linkedin-icon.svg" alt="LinkedIn Link" class="w-6 h-6">
+                </a>
+                <a href="https://bsky.app/profile/ambrosia-fish.bsky.social" target="_blank" rel="noopener noreferrer" class="text-light hover:text-button">
+                    <img src="img/bluesky-logo.svg" alt="Bluesky Link" class="w-6 h-6">
+                </a>
+            </div>
+            <p class="text-center text-sm opacity-80 mb-4">Discord: ambrosia_fish</p>
             <p class="text-center">&copy; 2025 Josef Ameur. All rights reserved.</p>
         </div>
     </footer>
@@ -320,8 +337,8 @@
                     },
                     body: json
                })
-               .then(async (response) => {
-                  let data = await response.json();
+                .then(async (response) => {
+                 let data = await response.json();
                     
                     if (response.status === 200) {
                        // Show success message
@@ -364,16 +381,20 @@
                 element.classList.add('visible');
             };
             
-            const handleScrollAnimation = () => {
+            // Immediately show elements that are already in view on page load
+            function handleScrollAnimation() {
                 scrollElements.forEach((el) => {
                     if (elementInView(el, 100)) {
                         displayScrollElement(el);
                     }
                 });
-            };
+            }
             
             // Initialize
             setTimeout(handleScrollAnimation, 100);
+            
+            // Add scroll event for any additional animations during scrolling
+            window.addEventListener('scroll', handleScrollAnimation);
         });
     </script>
 </body>
