@@ -76,7 +76,7 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden">
+        <div id="mobile-menu" class="md:hidden bg-mid">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 font-primary">
                 <a href="#home" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">HOME</a>
                 <a href="#projects" class="block px-3 py-2 text-light hover:bg-mid hover:text-light rounded-md mobile-link">PROJECTS</a>
@@ -114,7 +114,7 @@
                     
                     <!-- Button - Centered on mobile -->
                     <div class="text-center md:text-left">
-                         <a href="#projects" class="btn-primary inline-block">VIEW MY PROJECTS</a>
+                        <a href="#projects" class="btn-primary inline-block">VIEW MY PROJECTS</a>
                     </div>
                 </div>
                 
@@ -335,111 +335,49 @@
             const closeIcon = document.getElementById('close-icon');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            // Ensure menu is hidden on page load
-            mobileMenu.classList.remove('menu-show');
-            hamburgerIcon.classList.remove('icon-hide');
+            // IMPORTANT: Ensure proper initial state by explicitly setting classes
             hamburgerIcon.classList.add('icon-show');
-            closeIcon.classList.remove('icon-show');
+            hamburgerIcon.classList.remove('icon-hide');
             closeIcon.classList.add('icon-hide');
+            closeIcon.classList.remove('icon-show');
             
-            console.log("Mobile menu initialized");
-            
-            // Toggle menu function with improved touch support
-            function toggleMenu(event) {
-                if (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                
+            // Brute force menu toggle function
+            function toggleMenu() {
+                console.log("Toggle menu called");
                 if (mobileMenu.classList.contains('menu-show')) {
-                    // Hide menu
+                    // Menu is showing, so hide it
                     mobileMenu.classList.remove('menu-show');
                     hamburgerIcon.classList.remove('icon-hide');
                     hamburgerIcon.classList.add('icon-show');
                     closeIcon.classList.remove('icon-show');
                     closeIcon.classList.add('icon-hide');
-                    document.body.classList.remove('menu-open');
                     console.log("Menu hidden");
                 } else {
-                    // Show menu
+                    // Menu is hidden, so show it
                     mobileMenu.classList.add('menu-show');
                     hamburgerIcon.classList.remove('icon-show');
                     hamburgerIcon.classList.add('icon-hide');
                     closeIcon.classList.remove('icon-hide');
                     closeIcon.classList.add('icon-show');
-                    document.body.classList.add('menu-open');
                     console.log("Menu shown");
                 }
             }
             
-            // Add menu button click/touch event
-            mobileMenuButton.addEventListener('click', toggleMenu);
-            mobileMenuButton.addEventListener('touchend', function(e) {
+            // Add click event for menu button
+            mobileMenuButton.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log("Menu button clicked");
                 toggleMenu();
-            }, { passive: false });
+            });
             
-            // Handle link clicks with touch support
+            // Close menu when links are clicked
             mobileLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Close the menu
+                link.addEventListener('click', function() {
                     if (mobileMenu.classList.contains('menu-show')) {
                         toggleMenu();
                     }
-                    
-                    // For links going to same page, help with smooth scrolling
-                    const href = this.getAttribute('href');
-                    
-                    // Only handle anchor links on the same page
-                    if (href.startsWith('#')) {
-                        e.preventDefault();
-                        
-                        const targetId = href;
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            const headerOffset = 70; // Header height
-                            const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                            
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                    // For external links, allow default navigation
                 });
-                
-                // Add touch support
-                link.addEventListener('touchend', function(e) {
-                    if (mobileMenu.classList.contains('menu-show')) {
-                        toggleMenu();
-                    }
-                    
-                    // For external page links (not starting with #), let the default navigation happen
-                    const href = this.getAttribute('href');
-                    if (!href.startsWith('#')) {
-                        return; // Let the default navigation happen
-                    }
-                    
-                    // For anchor links, handle smooth scrolling
-                    e.preventDefault();
-                    
-                    const targetId = href;
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const headerOffset = 70; // Header height
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, { passive: false });
             });
             
             // Close menu when clicking outside
@@ -452,28 +390,6 @@
                         toggleMenu();
                     }
                 }
-            });
-            
-            // Smooth scrolling for desktop anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerOffset = 70; // Header height
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
             });
             
             // Scroll animation with better performance
@@ -521,8 +437,8 @@
             // Reinitialize on resize with debounce
             let resizeTimer;
             window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(handleScrollAnimation, 250);
+               clearTimeout(resizeTimer);
+               resizeTimer = setTimeout(handleScrollAnimation, 250);
             }, { passive: true });
         });
     </script>
